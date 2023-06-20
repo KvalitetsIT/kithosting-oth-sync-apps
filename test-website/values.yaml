@@ -1,6 +1,6 @@
 service:
   fullnameOverride: test-website
-  namespace: test-kunde
+  namespace: oth-sync
 
   replicaCount: 2
 

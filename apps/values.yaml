@@ -1,7 +1,7 @@
 argoApps:
   server: https://kubernetes.default.svc
-  repoUrl: https://github.com/KvalitetsIT/kithosting-test-kunde.git
+  repoUrl: https://github.com/KvalitetsIT/kithosting-oth-sync-apps.git
 
   namespaceArgo: infrastructure
-  namespace: test-kunde
-  project: test-kunde
+  namespace: oth-sync
+  project: oth-sync

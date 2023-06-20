@@ -1,11 +1,12 @@
 argoApps:
   applications:
-    test-kunde-applications:
+    oth-sync-apps:
       path: apps
       targetRevision: main
       valueFiles:
         - values.yaml
         - values-test.yaml
+      namespace: oth-sync
 
     test-website:
       path: test-website
@@ -13,3 +14,4 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
+      namespace: oth-sync
