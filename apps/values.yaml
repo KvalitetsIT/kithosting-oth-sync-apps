@@ -1,6 +1,6 @@
 argoApps:
   server: https://kubernetes.default.svc
-  repoUrl: https://github.com/KvalitetsIT/kithosting-oth-sync-apps.git
+  repoUrl: git@github.com:KvalitetsIT/kithosting-oth-sync-apps.git
 
   namespaceArgo: infrastructure
   namespace: oth-sync
