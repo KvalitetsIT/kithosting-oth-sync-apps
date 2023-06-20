@@ -1,0 +1,63 @@
+service:
+  revisionHistoryLimit: 3
+  ingress:
+    enabled: false
+
+  image:
+    tag: "99c4d89a14b5e0aa49e47da8681409876d62b920"
+  replicaCount: 2
+
+  docDeployment:
+    enabled: false
+
+  podAnnotations:
+    prometheus.io/path: /actuator/prometheus
+    prometheus.io/port: "8081"
+    prometheus.io/scrape: "true"
+
+  serviceMonitor:
+    enabled: true
+    release: "oth-sync-prometheus"
+    targetPort: "8081"
+    path: "/actuator/prometheus"
+
+  deployment:
+    containerPort: 8360
+    extraContainerPort:
+      metrics: 8081
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 25m
+        memory: 50Mi
+    readinessProbe:
+      httpGet:
+        path: /actuator/health
+        port: 8081
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+      failureThreshold: 10
+    livenessProbe:
+      httpGet:
+        path: /actuator/health
+        port: 8081
+      initialDelaySeconds: 20
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    startupProbe:
+      httpGet:
+        path: /actuator/health
+        port: 8081
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+
+  service:
+    port: 80
+    targetPort: container-port

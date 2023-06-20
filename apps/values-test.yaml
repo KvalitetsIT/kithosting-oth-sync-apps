@@ -15,3 +15,10 @@ argoApps:
         - values.yaml
         - values-test.yaml
       namespace: oth-sync
+
+    kih-telecate-exporter:
+    path: kih-telecate-exporter
+    targetRevision: main
+    valueFiles:
+      - values.yaml
+      - values-test.yaml
