@@ -23,5 +23,5 @@ service:
 
   deployment:
     env:
-      database.hostname:
+      "database.hostname":
         value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
