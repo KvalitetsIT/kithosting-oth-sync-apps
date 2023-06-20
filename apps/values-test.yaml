@@ -17,7 +17,7 @@ argoApps:
       namespace: oth-sync
 
     kih-telecate-exporter:
-      path: kih-telecate-exporter
+      path: kih-telecare-exporter
       targetRevision: main
       valueFiles:
         - values.yaml
