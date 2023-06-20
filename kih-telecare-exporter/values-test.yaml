@@ -23,5 +23,13 @@ service:
 
   deployment:
     env:
-      "database.hostname":
+      database.hostname:
+        value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
+      database.username:
+        value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
+      database.port:
+        value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
+      database.password:
+        value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
+      database.database:
         value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
