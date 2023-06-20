@@ -1,0 +1,17 @@
+argoApps:
+  applications:
+    test-kunde-applications:
+      path: apps
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-prod.yaml
+      namespace: test-kunde
+
+    test-website:
+      path: test-website
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-prod.yaml
+      namespace: test-kunde
