@@ -23,15 +23,65 @@ service:
 
   deployment:
     env:
-      database.hostname:
-        value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
-      database.username:
-        value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
-      database.port:
-        value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
-      database.password:
-        value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
-      database.database:
-        value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
-      database.type:
-        value: "jdbc:mariadb://mariadb-galera.data-storage-services:3306/kih-telecare-exporter?useSSL=false"
+      ENV_VERSION:
+        value: "1.1_build1"
+      ENV_ENVIRONMENT:
+        value: "dev"
+      ENV_LOGFILE:
+        value: "/var/log/exporter"
+      ENV_LOGLEVEL:
+        value: "warn"
+      ENV_LOGGING_REPOSITORY:
+        value: "debug"
+      ENV_LOGGING_MEASUREMENT:
+        value: "debug"
+      ENV_EXPORT_START:
+        value: "2020-06-01"
+      ENV_EXPORT_RETRYDAYS:
+        value: "15"
+      ENV_EXPORT_NODEVICEWHITELIST:
+        value: "true"
+      ENV_EXPORT_BACKEND:
+        value: "oioxds"
+      ENV_EXPORT_OIOXDS_XDSGENERATOR_URL:
+        value: ""
+      ENV_EXPORT_OIOXDS_XDSGENERATOR_HEALTHCHECK:
+        value: ""
+      ENV_CLINICIAN_BATCHSIZE:
+        value: "1000"
+      ENV_CLINICIAN_URL:
+        value: "https://oth-demo.oth.io/clinician/api"
+      ENV_AUTHENTICATION_KEY:
+        type: secretKeyRef
+        name: clinician-authentication
+        key: key
+      ENV_AUTHENTICATION_SECRET:
+        type: secretKeyRef
+        name: clinician-authentication
+        key: secret
+      ENV_DATABASE_HOSTNAME:
+        value: "jdbc:mariadb://mariadb-galera.data-storage-services"
+      ENV_DATABASE_TYPE:
+        value: "mysql"
+      ENV_DATABASE_PASSWORD:
+        type: secretKeyRef
+        name: database-credentials
+        key: password
+      ENV_DATABASE_USERNAME:
+        type: secretKeyRef
+        name: database-credentials
+        key: username
+      ENV_DATABASE_PORT:
+        value: "3306"
+      ENV_DATABASE_DATABASE:
+        value: "oth-sync-kih-telecare-exporter"
+
+  sealedSecret:
+    database-credentials:
+      encryptedData:
+        password: AgCD1O42tIndK7roFIt5GNlokmvLkYpazWGd3FfUGMZKkosjWsWoluL0FINEUzLXXYJ+/770Zc/8z8SNNLPSyblt4GpBrbsTNK1lw5qA5Z9TyY04zE60JWCcoAQafOOSii+XKbKJX5HrrGOlnCqM9uu1xLZnp4c9c5gTEk+EAQ+EbD57vTHCTGJ1Gr4baiyYn/pe0gvEFzCLODQszeHUYUOz94huN+UUBvelhkU3Lg1CZX+Nk103t7wWiHfmVlvshPh+jAdIQR5YJYv1aN1KULd8N6VtX80RXqMRhnJbfFhH1ZKCk+T2oF7MuuFPAXfxvdluRTyi2ge7igw9IL0rrbs45gsBxJkhb9Zxv2wFr9luoVUxLF0fRL/t33Os/4RyRIY9OWRqiaiUvEjdIuKw5Tsa0qG/nfqEj8GgGI7JfDLDwspviWeBJQE0nzmIDJjlT4KsKvHqKvNFiP8NPtbra+jacKjOMXNlloY/mibCOVRRY+2OQpKV0wLJQLr1TfzQYK7jDAgn7nZxEPr8kJ1sLJmtdwbF1EmLhNyoXSri/KLNHwvHOOVyFs5MZ9X+k1COloU2i3ji33Rxa5/1elxj+RZ22jkAOaMfKysj0oU7khdvGFYrW1KA9hMSVmS6DNIq5VIlDtALrnueyvujNUxlHeuP/tQQ7JzE62wsZM7KVthbwTuh11W9knfxj14oKlBxB0VoVumfo8NRd5TF3CdaeKPpQw0/ZXGKYYIQk5KJ83ux2g==
+        username: AgBXGk3WAil+fj/Rd9uq2YLP5IDmctxOgaj8BhTFwLsE1wDWI/3rRRojydVCPPfAU3Pizls90ihGOlNw<fWbdOrID7mSBpQ1mOaN126OH8/ZTeNZ2ArqW/hQAiaE5cEEjKjjKx805LR7oR3Z6qm6PZSSfqmeQpQju/zQ+u2mAqLO9tQFHo83SKyDZSrS2wqB4AoARyKmIlelzUBIM8b32h1ilSzMjILkw7YyFq6er+d4R3fJHnGVccJIFhbwDb7hsaIKtCwOK1f6qHjciRJEEMqMl7bVN3VbTFQqsIvMC4tZPkSGQuzSAvCXF6GTGYe6+6jriJjx7vuL7BS+iYJZ2v2cikeG6kALBECp1e51Esqj7nAiJSuP915McurfMD3aVd3l03IvAWl3brZRvyrmvTIw+S6YCtZidr3O9yYT16HhdSHgYCThb0Ymz45n5qeqrT20vhuakF+J9Jfo3uy9CdDKBbHKrrD5M/xjmx4ejBynPlwzgkHrkaHFyo7ukaW3fxDCv9A8a5rIxsUcLBHV9xWxc6c9FkvazGNQbrb1ENZg1FHkVFfYnbZOPNmom56OA3MUfNSTtV5J/Zkk/Pjljoo5qcegezinEW9OqGGDcPbh+87WDwIrPDXDHhCqI0yXnsyv6UTG+ia/ktsvJv1SgEhKY8betFoZyJQEkfzWf+Qw4+Z4F3Ox74lIs+O8kLcp6IwvrRJPVUqKE1orMkJh4roGu3zyeYpk=
+    clinician-authentication:
+      encryptedData:
+        key: AgCbPqi90mtLq92iKoekXwlaZvPWiUGpyGZO2y1DiQJDQdKU7RGvuFuoohhe4aLcZopm+hzUhpImmsRPPO2c/j8AI2AyRlpGCAZrBod6Owg2UURALOJVNTFRfrZkoo2tOkKt3tnQzPrMBth+ZXfUo39RcPBcOcb/Y0QbOigEWtTUBm2g31QDu0UtCWumMvS7xW4YelJ55zWFRNvLUZwaf1RJydVHOsuz4rPeN59b9uwZtU5Em9q3GF7SJOhrtaEj715n+amH8o3bzqpT1E/iOxrvXeud9+EJIRzvi2/pThHNWGsp8IjNmu7h/6i69QLcc2McJIQNRSmRhnfEBVXgKp+FgvOkDK/jYHGF7155EpbaHuQrseMI8tRvL4tx3cdrNLJ12TSKOBctRX6Nn4EiqKHd/tFBlMbg8v8gSR6btDMKYBoJ1t4NPaplHAUwLutA6foj+Tu0Os4ccT7R3dWadoIYcq8MbB4rgTmiFml9ugybdXttBOHZEOswQGr/HckmcLibPdmgdHl5Rmm+Xi1700NIQqAvNe/kPthACfdCCYaZ2nAXm6RihX8OeceeT4gPjrdJ8IiKcsPzKz2jDThdeFogUnyLqs2CySbEr6OORNPi0rHudw1ECJT5jgMpNldUBkqZco7wYRGafTb/6M1NUWW6fTx398p7/hZ8t4HwUYFq6bpbvghW5to2DhJ6qYY71YEu39yQeoE1pOXT4cBI4kxwQ6XxGIUIDrZ2rK6fQ8D0/g==
+        secret: AgCg921QNqUN9eIYDTOhsPu7qQ6z2g7AqxLNJJnx6g6jEe0DhxRvrOfvFu/rzeXCNh/D7Yl5eUUTxCZla/3IlegTN9c4rWQi6grsMdibzoIc1UtdbdBOc+pfhwUGVOBERW72A7pw/s07ne4j+5ubpE4KkBO9ePzEL2I1vZxibhD3XtCAUIR9hSClGi4nVpAn5tZumxIHHMbREZ8tiXValc9zYFnIaxd00QRmL7ZH8MYmqLuFc0yBZIDjH0FdI8NA9JLEh1k92brqY93OozRbCnU1B8kSRiCVzK+xYEyoBm+XIkFNzd8V6TCe4QzRZ0DMTiZVWOrfkQ4tSMZJCHcVUs7RbDNsg2xlRNxzSgVBvJxyz7GqB4Zdcm2e1TNE9bEcyzCBaTUh3yD98HxaTfMFnfNNDxE4lUORmeksRHEjq5k9pukRDeL8me97q6F17RxuercUpZqKkoSlot1l3nWv+b0xq5khq1rZrBkgufes35Hz/A6J+XQcwq35gMM4lz30z6eBJ7rd5TykQ7zi08OJYBxsvLve/DkwjNi1dbaYw3bbQffJg8lvHaVSpyYnLx9SjXj5xAdnpoZ1slT3/1XPURsmEfX1ER4VR0wSo/XzOiqdqXvGp485HarE2IiXPbXyOggSaXHf4H5WGejl1iheDKZF6V8o7NaGR/vJ9h+skzi+IJ+brUqNX3x5lF+VuewejCF3Op4eKw10DYPnFMAhqYbp1lS+8AVbhEVYNbdCLN89BZ23UaO0Ht2U3SC9OykvgW2efwcpSQIrLblSgmzVOMCF
