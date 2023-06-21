@@ -5,7 +5,7 @@ service:
     tag: "1.4.0"
   replicaCount: 2
   imagePullSecrets:
-    - kithosting-dockerhub
+    - name: kithosting-dockerhub
   deployment:
     containerPort: 9098
     resources:
