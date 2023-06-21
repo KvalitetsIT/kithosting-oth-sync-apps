@@ -22,3 +22,10 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
+
+    kih-xds-generator:
+      path: kih-xds-generator
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-test.yaml
