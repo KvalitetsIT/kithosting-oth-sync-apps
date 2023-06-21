@@ -42,7 +42,7 @@ service:
       SERVER.ERROR.INCLUDE-STACKTRACE:
         value: "never"
       SERVER.PORT:
-        value: "9019"
+        value: "9010"
       SERVER.TOMCAT.ACCESSLOG.ENABLED:
         value: "true"
       SERVER.TOMCAT.ACCESSLOG.PATTERN:
