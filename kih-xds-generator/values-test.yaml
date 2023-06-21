@@ -1,0 +1,88 @@
+service:
+  namespace: oth-sync
+  fullnameOverride: kih-xds-generator
+  image:
+    repository: kvalitetsit/kih-xds-generator
+  imagePullSecrets:
+    - name: kih-xds-generator
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        more_set_headers "X-Request-Id: $req_id";
+    hosts:
+      - host: kih-xds-generator.oth-sync.t0.hosting.kitkube.dk
+        paths:
+          - path: /
+    tls:
+      - hosts:
+          - kih-xds-generator.oth-sync.t0.hosting.kitkube.dk
+        secretName: kih-xds-generator.oth-sync.t0.hosting.kitkube.dk
+
+  deployment:
+    env:
+      SPRING.OUTPUT.ANSI.ENABLED:
+        value: "detect"
+      LOGGING.LEVEL.ROOT:
+        value: "warn"
+      LOGGING.LEVEL.ORG.APACHE.CXF:
+        value: "warn"
+      LOGGING.LEVEL.IO.OTH.XDSGENERATOR.HANDLERS.KIHDATACONTROLLER:
+        value: "info"
+      LOGGING.PATTERN.DATEFORMAT:
+        value: "yyyy-MM-dd HH:mm:ss.SSS"
+      LOGGING.PATTERN.CONSOLE:
+        value: "%d %-5p %-30.30logger{29}: %m %n %ex{2}"
+      MANAGEMENT.ENDPOINT.HEALTH.PROBES.ENABLED:
+        value: "true"
+      MANAGEMENT.ENDPOINT.HEALTH.SHOW-DETAILS:
+        value: "always"
+      SERVER.ERROR.INCLUDE-STACKTRACE:
+        value: "never"
+      SERVER.PORT:
+        value: "9019"
+      SERVER.TOMCAT.ACCESSLOG.ENABLED:
+        value: "true"
+      SERVER.TOMCAT.ACCESSLOG.PATTERN:
+        value: '%t sip=%h r="%r" htsc=%s B=%b tt=%D tid=%I ua="%{User-Agent}i"'
+      SERVER.TOMCAT.BASEDIR:
+        value: "tomcat"
+      XDS.REPOSITORYUNIQUEID:
+        value: "1.2.208.176.43210.8.1.29"
+      XDS.GENERATE.DOCUMENTID:
+        value: "true"
+      XDS.ITI41.ENDPOINT:
+        value: "unknown"
+      SOR.CODE:
+        value: "6071000016008"
+      SOR.NAME:
+        value: "TeleCare Nord"
+      DGWS.ENABLED:
+        value: "true"
+      DGWS.STS.URL:
+        value: "https://test2.ekstern-test.nspop.dk:8443/sts/services/SecurityTokenService"
+      DGWS:
+        value: "oth-sync-kih-telecare-exporter"
+      DGWS.KEYSTORE.TYPE:
+        value: "production"
+      DGWS.KEYSTORE.ALIAS:
+        value: "tu generel foces gyldig (funktionscertifikat)"
+      DGWS.KEYSTORE.FILENAME:
+        value: "file:/app/conf/FOCES_gyldig_2025.p12"
+      DGWS.KEYSTORE.PASSWORD:
+        type: secretKeyRef
+        name: dgws-credentials
+        key: password
+      DGWS.CERTIFICATE.ITSYSTEM:
+        value: "TRUST2408 Systemtest XIX CA"
+      DGWS.CERTIFICATE.ORGNAME:
+        value: "TU GENEREL FOCES gyldig (funktionscertifikat)"
+      DGWS.CERTIFICATE.CVR:
+        value: "30808460"
+
+  sealedSecret:
+    dgws-credentials:
+      encryptedData:
+        password: AgCQ5cX8Xmep5CJfuJmeZbrGl3DvJoO3U/JGY9uGXbbPdnGwTjxl+xK59Csa3+Hhh2fxKRIsyFxY9+L6+ZkWZE9oU0GhA0w0Bmq0facb2BKx/aOePkybcFf9XExPSf8P/VJFjcuvHeMsSPpUMstdAo5XcVvD6X/vjkuPWp1t3rJg4yr4eQr8uwL+6yCOtBFqTpbGqDKqw9FvXig3IbMKkcl0BI2v+3iwifTuUPAkfYumJAn1aBbp0rvAsxBgcWRmpUu2Vuj5+qwu8HrgmkATw7K2slrHQXzSYTxQRpE6FzMg8BK2RoSJx/YfavuL8dB2yniv8EXOas0luK/xHuLGVCqj+z7qhOd3LZOiIweeWAGhA53FXeIVEPjwn4etSXodMg7NuWUoTV4WviwCVONCmmUHIYi2gzUM76pxiBt3EPxvu2u2dM9tsSGLnuKR2xeKjOi0gb5SuLt4R0XFfjdvmUzd14r6xC12lOLxY/fEvde171chhZp2wxZF8KIpEcrzVEyM/mvc4xTpXuW3KFou9c1vBjME6A62H6xJxkZJXN32FbwQNEDOMuicJX3NAcbYRd3aMWt8lPVIGDzlM37PSaj6SZCrH3r37SENcidlwrVDGe5C/GKPHiZnSAuaZs1o5Okftk+F2PsuHzjg7KVBJ48mwJabTkAoXde+vIlLPto/Tf5gs9mupWVKWfarZPTNjpOY1L5UuvQJNw==

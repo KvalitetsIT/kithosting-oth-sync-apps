@@ -1,0 +1,26 @@
+service:
+  revisionHistoryLimit: 3
+
+  image:
+    tag: "2a5886232407c392868d2df9b1da1e4a963d74a7"
+  replicaCount: 2
+
+  deployment:
+    containerPort: 9010
+    resources:
+      requests:
+        cpu: 25m
+        memory: 50Mi
+    readinessProbe:
+      httpGet:
+        path: /actuator/health
+        port: 9010
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+      failureThreshold: 10
+
+  service:
+    port: 80
+    targetPort: container-port
