@@ -22,6 +22,39 @@ service:
       timeoutSeconds: 1
       failureThreshold: 10
 
+  extraVolumes:
+    log: |
+      emtpyDir: {}
+  extraVolumeMounts:
+    log:
+      mountPath: /pack/wildfly8/standalone/log
+
+  configMapMountPaths:
+    nginx-conf:
+      configMapMountPath: /pack/wildfly8/standalone/deployments/openxds-ds.xml
+      configMapMountSubPath: openxds-ds.xml
+  extraConfigMap:
+  nginx.conf: |
+    <?xml version="1.0" encoding="UTF-8"?>
+    <datasources>
+        <datasource jndi-name="java:jboss/datasources/openxds" pool-name="openxds" enabled="true" spy="false">
+            <connection-url>jdbc:mysql://openxds-db:3306/openxds</connection-url>
+            <driver>mysql</driver>
+            <pool>
+                <min-pool-size>2</min-pool-size>
+                <max-pool-size>20</max-pool-size>
+            </pool>
+            <security>
+                <user-name>openxds</user-name>
+                <password>open123</password>
+            </security>
+            <validation>
+                <check-valid-connection-sql>select 1</check-valid-connection-sql>
+                <background-validation-millis>10000</background-validation-millis>
+            </validation>
+        </datasource>
+    </datasources>
+
   service:
     port: 80
     targetPort: container-port
