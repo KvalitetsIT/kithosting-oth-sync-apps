@@ -4,7 +4,7 @@ service:
     enabled: false
 
   image:
-    tag: "99c4d89a14b5e0aa49e47da8681409876d62b920"
+    tag: "0a02fa18d11f64c8a3a7b21c006ab597e61963f1"
   replicaCount: 2
 
   docDeployment:
