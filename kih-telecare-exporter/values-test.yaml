@@ -60,7 +60,7 @@ service:
         name: clinician-authentication
         key: secret
       ENV_DATABASE_HOSTNAME:
-        value: "jdbc:mariadb://mariadb-galera.data-storage-services"
+        value: "mariadb://mariadb-galera.data-storage-services"
       ENV_DATABASE_TYPE:
         value: "mysql"
       ENV_DATABASE_PASSWORD:
