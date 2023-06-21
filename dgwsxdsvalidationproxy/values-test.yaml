@@ -1,0 +1,67 @@
+service:
+  namespace: oth-sync
+  fullnameOverride: dgwsxdsvalidationproxy
+  image:
+    repository: kvalitetsit/dgwsxdsvalidationproxy
+  imagePullSecrets:
+    - name: dgwsxdsvalidationproxy
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        more_set_headers "X-Request-Id: $req_id";
+    hosts:
+      - host: dgwsxdsvalidationproxy.oth-sync.t0.hosting.kitkube.dk
+        paths:
+          - path: /
+    tls:
+      - hosts:
+          - dgwsxdsvalidationproxy.oth-sync.t0.hosting.kitkube.dk
+        secretName: dgwsxdsvalidationproxy.oth-sync.t0.hosting.kitkube.dk
+
+  deployment:
+    env:
+      LOG_MAX_FILE_SIZE:
+        value: "10MB"
+      LOG_MAX_BACKUP_INDEX:
+        value: "5"
+      ITI41_BACKEND_URL:
+        value: "unknown"
+      ITI43_BACKEND_URL:
+        value: "uknown"
+      LOGGING_RULES_LOG_CPRNUMBER:
+        value: "true"
+      LOGGING_RULES_LOG_CLINICAL_DOCUMENT:
+        value: "true"
+      VALIDATION_RULES_VALIDATE_DOCUMENT:
+        value: "true"
+      VALIDATION_RULES_CONTINUE_ON_ERROR:
+        value: "false"
+      REPORTING_RULES_REPORT_DOCUMENT:
+        value: "true"
+      ALLOW_ITI41:
+        value: "true"
+      ALLOW_ITI43:
+        value: "false"
+      CDA_VALIDATION_CLIENT_ENDPOINT:
+        value: "unknown"
+      DOCUMENT_TYPE_CODES_CODE:
+        value: "53576-5;74468-0;74465-6;39289-4;"
+      DOCUMENT_TYPE_CODES_NAME:
+        value: "PHMR;QFDD;QRD;APD;"
+      LOG_CDA_DOCUMENT_DECODE_EXCEPTION:
+        value: "true"
+      LOG_CDA_DOCUMENT_DECODE:
+        value: "false"
+      HTTP_CLIENT_MAX_TOTAL_CONNECTIONS:
+        value: "2"
+      HTTP_CLIE2NT_DEFALT_MAX_CONNECTIONS_PER_ROUTE:
+        value: "2"
+      SERVICE_VERSION:
+        value: "v1.3.9"
+      LOG_LEVEL:
+        value: "INFO"
+      NSP_TEST_FEDERATION:
+        value: "true"
