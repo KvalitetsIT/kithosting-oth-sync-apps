@@ -28,7 +28,7 @@ service:
       log:
         mountPath: /pack/wildfly8/standalone/log
     configMapMountPaths:
-      nginx-conf:
+      openxds-ds.xml:
         configMapMountPath: /pack/wildfly8/standalone/deployments/openxds-ds.xml
         configMapMountSubPath: openxds-ds.xml
     extraConfigMap:
