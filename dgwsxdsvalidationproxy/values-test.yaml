@@ -3,8 +3,6 @@ service:
   fullnameOverride: dgwsxdsvalidationproxy
   image:
     repository: kvalitetsit/dgwsxdsvalidationproxy
-  imagePullSecrets:
-    - name: dgwsxdsvalidationproxy
   ingress:
     enabled: true
     annotations:
