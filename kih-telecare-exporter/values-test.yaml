@@ -44,9 +44,9 @@ service:
       ENV_EXPORT_BACKEND:
         value: "oioxds"
       ENV_EXPORT_OIOXDS_XDSGENERATOR_URL:
-        value: ""
+        value: "unknown"
       ENV_EXPORT_OIOXDS_XDSGENERATOR_HEALTHCHECK:
-        value: ""
+        value: "unknown"
       ENV_CLINICIAN_BATCHSIZE:
         value: "1000"
       ENV_CLINICIAN_URL:
@@ -60,7 +60,7 @@ service:
         name: clinician-authentication
         key: secret
       ENV_DATABASE_HOSTNAME:
-        value: "mariadb://mariadb-galera.data-storage-services"
+        value: "mariadb-galera.data-storage-services"
       ENV_DATABASE_TYPE:
         value: "mysql"
       ENV_DATABASE_PASSWORD:
