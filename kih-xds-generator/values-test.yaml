@@ -124,5 +124,7 @@ service:
           mountPath: /output
         dgws-credential-key:
           mountPath: /input/tls.key
+          subPath: tls.key
         dgws-credential-crt:
           mountPath: /input/tls.crt
+          subPath: tls.crt
