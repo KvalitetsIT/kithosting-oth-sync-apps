@@ -1,8 +1,12 @@
 service:
-  revisionHistoryLimit: 3
-
+  namespace: oth-sync
+  fullnameOverride: kih-xds-generator
   image:
+    repository: kvalitetsit/kih-xds-generator
     tag: "b3db067dc62dd288e6dcacb58baf96c75494b158"
+  imagePullSecrets:
+    - name: kithosting-dockerhub
+  revisionHistoryLimit: 3
   replicaCount: 2
 
   deployment:
@@ -20,6 +24,33 @@ service:
       successThreshold: 1
       timeoutSeconds: 1
       failureThreshold: 10
+    env:
+      SPRING.OUTPUT.ANSI.ENABLED:
+        value: "detect"
+      LOGGING.LEVEL.ROOT:
+        value: "warn"
+      LOGGING.LEVEL.ORG.APACHE.CXF:
+        value: "warn"
+      LOGGING.LEVEL.IO.OTH.XDSGENERATOR.HANDLERS.KIHDATACONTROLLER:
+        value: "info"
+      LOGGING.PATTERN.DATEFORMAT:
+        value: "yyyy-MM-dd HH:mm:ss.SSS"
+      LOGGING.PATTERN.CONSOLE:
+        value: "%d %-5p %-30.30logger{29}: %m %n %ex{2}"
+      MANAGEMENT.ENDPOINT.HEALTH.PROBES.ENABLED:
+        value: "true"
+      MANAGEMENT.ENDPOINT.HEALTH.SHOW-DETAILS:
+        value: "always"
+      SERVER.ERROR.INCLUDE-STACKTRACE:
+        value: "never"
+      SERVER.PORT:
+        value: "9010"
+      SERVER.TOMCAT.ACCESSLOG.ENABLED:
+        value: "true"
+      SERVER.TOMCAT.ACCESSLOG.PATTERN:
+        value: '%t sip=%h r="%r" htsc=%s B=%b tt=%D tid=%I ua="%{User-Agent}i"'
+      SERVER.TOMCAT.BASEDIR:
+        value: "tomcat"
   service:
     port: 80
     targetPort: container-port
