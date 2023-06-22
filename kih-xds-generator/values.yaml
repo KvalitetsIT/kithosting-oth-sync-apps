@@ -20,13 +20,6 @@ service:
       successThreshold: 1
       timeoutSeconds: 1
       failureThreshold: 10
-    configMapMountPaths:
-      FOCES_gyldig_2025.p12:
-        configMapMountPath: /app/conf/FOCES_gyldig_2025.p12
-        configMapMountSubPath: FOCES_gyldig_2025.p12
-  extraConfigMap:
-    FOCES_gyldig_2025.p12: |
-    
   service:
     port: 80
     targetPort: container-port
