@@ -1,10 +1,4 @@
 service:
-  namespace: oth-sync
-  fullnameOverride: kih-telecate-exporter
-  image:
-    repository: kvalitetsit/kih-telecare-exporter
-  imagePullSecrets:
-    - name: kih-telecate-exporter
   ingress:
     enabled: true
     annotations:
@@ -23,26 +17,6 @@ service:
 
   deployment:
     env:
-      ENV_VERSION:
-        value: "1.1_build1"
-      ENV_ENVIRONMENT:
-        value: "dev"
-      ENV_LOGFILE:
-        value: "/var/log/exporter"
-      ENV_LOGLEVEL:
-        value: "warn"
-      ENV_LOGGING_REPOSITORY:
-        value: "debug"
-      ENV_LOGGING_MEASUREMENT:
-        value: "debug"
-      ENV_EXPORT_START:
-        value: "2020-06-01"
-      ENV_EXPORT_RETRYDAYS:
-        value: "15"
-      ENV_EXPORT_NODEVICEWHITELIST:
-        value: "true"
-      ENV_EXPORT_BACKEND:
-        value: "oioxds"
       ENV_EXPORT_OIOXDS_XDSGENERATOR_URL:
         value: "http://kih-xds-generator/api/createphmr"
       ENV_EXPORT_OIOXDS_XDSGENERATOR_HEALTHCHECK:

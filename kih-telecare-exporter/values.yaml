@@ -1,7 +1,11 @@
 service:
+  namespace: oth-sync
+  fullnameOverride: kih-telecate-exporter
+  imagePullSecrets:
+    - name: kih-telecate-exporter
   revisionHistoryLimit: 3
-
   image:
+    repository: kvalitetsit/kih-telecare-exporter
     tag: "60628821b9f1fa220f3c162fbc1e2b05ef51b632"
   replicaCount: 2
 
@@ -20,6 +24,27 @@ service:
       successThreshold: 1
       timeoutSeconds: 1
       failureThreshold: 10
+    env:
+      ENV_VERSION:
+        value: "1.1_build1"
+      ENV_ENVIRONMENT:
+        value: "dev"
+      ENV_LOGFILE:
+        value: "/var/log/exporter"
+      ENV_LOGLEVEL:
+        value: "warn"
+      ENV_LOGGING_REPOSITORY:
+        value: "debug"
+      ENV_LOGGING_MEASUREMENT:
+        value: "debug"
+      ENV_EXPORT_START:
+        value: "2020-06-01"
+      ENV_EXPORT_RETRYDAYS:
+        value: "15"
+      ENV_EXPORT_NODEVICEWHITELIST:
+        value: "true"
+      ENV_EXPORT_BACKEND:
+        value: "oioxds"
 
   service:
     port: 80
