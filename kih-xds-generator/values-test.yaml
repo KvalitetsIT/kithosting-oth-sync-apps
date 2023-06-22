@@ -85,16 +85,18 @@ service:
       DGWS.CERTIFICATE.CVR:
         value: "30808460"
     extraVolumes:
-      dgwsCredentialKey: |
+      dgws-credential-key: |
         secret:
           secretName: dgws-credentials
           items:
           - key: tls.key
-      dgwsCredentialCrt: |
+          - path: /input/tls.key
+      dgws-credential-crt: |
         secret:
           secretName: dgws-credentials
           items:
           - key: tls.crt
+          - path: /input/tls.crt
 
   sealedSecret:
     dgws-credentials:
