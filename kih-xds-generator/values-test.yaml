@@ -90,13 +90,13 @@ service:
           secretName: dgws-credentials
           items:
           - key: tls.key
-            path: /input/tls.key
+            path: tls.key
       dgws-credential-crt: |
         secret:
           secretName: dgws-credentials
           items:
           - key: tls.crt
-            path: /input/tls.crt
+            path: tls.crt
 
   sealedSecret:
     dgws-credentials:
