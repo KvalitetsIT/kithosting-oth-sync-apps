@@ -8,7 +8,7 @@ argoApps:
         - values-test.yaml
       namespace: oth-sync
 
-    kih-telecate-exporter:
+    kih-telecare-exporter:
       path: kih-telecare-exporter
       targetRevision: main
       valueFiles:

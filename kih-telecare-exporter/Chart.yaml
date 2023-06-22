@@ -1,5 +1,5 @@
 apiVersion: v2
-name: kih-telecate-exporter
+name: kih-telecare-exporter
 version: 1.29.3
 dependencies:
   - name: service

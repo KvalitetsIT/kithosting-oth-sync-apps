@@ -1,12 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: kih-telecate-exporter
+  name: kih-telecare-exporter
   namespace: oth-sync
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/instance: kih-telecate-exporter
+      app.kubernetes.io/instance: kih-telecare-exporter
   policyTypes:
     - Ingress
     - Egress
