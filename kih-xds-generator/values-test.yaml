@@ -124,7 +124,7 @@ service:
       extraVolumeMounts:
         keystore-dir:
           mountPath: /output
-        dgwsCredentialKey:
+        dgws-credential-key:
           mountPath: /input/tls.key
-        dgwsCredentialCrt:
+        dgws-credential-crt:
           mountPath: /input/tls.crt
