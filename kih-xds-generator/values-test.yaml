@@ -85,6 +85,8 @@ service:
       DGWS.CERTIFICATE.CVR:
         value: "30808460"
     extraVolumes:
+      keystore-dir: |
+        emptyDir: {}
       dgws-credential-key: |
         secret:
           secretName: dgws-credentials
@@ -97,6 +99,9 @@ service:
           items:
           - key: tls.crt
             path: tls.crt
+    extraVolumeMounts:
+      keystore-dir:
+        mountPath: /app/config/keystores
 
   sealedSecret:
     dgws-credentials:
