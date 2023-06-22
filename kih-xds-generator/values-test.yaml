@@ -118,14 +118,7 @@ service:
       commands:
         - bash
         - "-c"
-        - "rm /output/moces.jks; openssl pkcs12 -export -in /input/moces.crt -inkey /input/moces.key -name sosi:alias_system -out mymoces.p12 -password pass:Test1234; keytool -importkeystore -srckeystore mymoces.p12 -srcstoretype pkcs12 -srcalias sosi:alias_system -srcstorepass Test1234 -destkeystore /output/moces.jks -deststoretype jks -deststorepass Test1234 -destalias sosi:alias_system"
-      # configMapMountPaths:
-      #   moces.key:
-      #     configMapMountPath: /input/tls.key
-      #     configMapMountSubPath: tls.key
-      #   moces.crt:
-      #     configMapMountPath: /input/tls.crt
-      #     configMapMountSubPath: tls.crt
+        - "rm /output/moces.jks; openssl pkcs12 -export -in /input/tls.crt -inkey /input/tls.key -name sosi:alias_system -out mymoces.p12 -password pass:Test1234; keytool -importkeystore -srckeystore mymoces.p12 -srcstoretype pkcs12 -srcalias sosi:alias_system -srcstorepass Test1234 -destkeystore /output/moces.jks -deststoretype jks -deststorepass Test1234 -destalias sosi:alias_system"
       extraVolumeMounts:
         keystore-dir:
           mountPath: /output
