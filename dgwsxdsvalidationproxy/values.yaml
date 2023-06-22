@@ -7,7 +7,7 @@ service:
   imagePullSecrets:
     - name: kithosting-dockerhub
   deployment:
-    containerPort: 9098
+    containerPort: 8080
     resources:
       requests:
         cpu: 25m
@@ -15,7 +15,7 @@ service:
     readinessProbe:
       httpGet:
         path: /actuator/health
-        port: 9098
+        port: 8080
       initialDelaySeconds: 5
       periodSeconds: 5
       successThreshold: 1
