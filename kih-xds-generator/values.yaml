@@ -2,7 +2,7 @@ service:
   revisionHistoryLimit: 3
 
   image:
-    tag: "2a5886232407c392868d2df9b1da1e4a963d74a7"
+    tag: "b3db067dc62dd288e6dcacb58baf96c75494b158"
   replicaCount: 2
 
   deployment:
