@@ -24,7 +24,7 @@ service:
       LOG_MAX_FILE_SIZE:
         value: "10MB"
       LOG_MAX_BACKUP_INDEX:
-        value: '5'
+        value: \x35
       ITI41_BACKEND_URL:
         value: "unknown"
       ITI43_BACKEND_URL:
@@ -54,9 +54,9 @@ service:
       LOG_CDA_DOCUMENT_DECODE:
         value: "false"
       HTTP_CLIENT_MAX_TOTAL_CONNECTIONS:
-        value: '2'
+        value: \x32
       HTTP_CLIE2NT_DEFALT_MAX_CONNECTIONS_PER_ROUTE:
-        value: '2'
+        value: \x32
       SERVICE_VERSION:
         value: "v1.3.9"
       LOG_LEVEL:
