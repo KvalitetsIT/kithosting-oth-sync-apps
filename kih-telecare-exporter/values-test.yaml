@@ -44,9 +44,9 @@ service:
       ENV_EXPORT_BACKEND:
         value: "oioxds"
       ENV_EXPORT_OIOXDS_XDSGENERATOR_URL:
-        value: "unknown"
+        value: "http://kih-xds-generator/api/createphmr"
       ENV_EXPORT_OIOXDS_XDSGENERATOR_HEALTHCHECK:
-        value: "unknown"
+        value: "http://kih-xds-generator/actuator/health"
       ENV_CLINICIAN_BATCHSIZE:
         value: "1000"
       ENV_CLINICIAN_URL:
