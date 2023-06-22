@@ -2,7 +2,7 @@ service:
   namespace: oth-sync
   fullnameOverride: kih-telecate-exporter
   imagePullSecrets:
-    - name: kih-telecate-exporter
+    - name: kithosting-dockerhub
   revisionHistoryLimit: 3
   image:
     repository: kvalitetsit/kih-telecare-exporter
