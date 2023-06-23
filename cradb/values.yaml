@@ -13,10 +13,10 @@ mariadb:
 
   primary:
     extraVolumes:
-      mysql: |
+      - name: mysql 
         emtpyDir: {}
     extraVolumeMounts:
-      mysql:
+      - name: mysql
         mountPath: /var/lib/mysql
 
 namespace: oth-sync
