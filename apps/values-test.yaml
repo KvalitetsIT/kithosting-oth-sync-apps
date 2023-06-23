@@ -35,3 +35,5 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
+      namespace: oth-sync
+

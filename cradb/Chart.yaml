@@ -1,6 +1,7 @@
 apiVersion: v2
 name: cradb
 version: 12.2.5
+Namespace: oth-sync
 dependencies:
   - name: mariadb
     version: 12.2.5
