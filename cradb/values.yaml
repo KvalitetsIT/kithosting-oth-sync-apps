@@ -5,7 +5,7 @@ service:
     repository: registry.nspop.dk/platform/cradb
     tag: "latest"
   revisionHistoryLimit: 3
-  replicaCount: 2
+  replicaCount: 1
 
   deployment:
     containerPort: 3306
