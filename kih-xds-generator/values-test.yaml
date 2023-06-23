@@ -38,8 +38,6 @@ service:
         value: "true"
       DGWS.STS.URL:
         value: "https://test2.ekstern-test.nspop.dk:8443/sts/services/SecurityTokenService"
-      DGWS:
-        value: "oth-sync-kih-telecare-exporter"
       DGWS.KEYSTORE.TYPE:
         value: "production"
       DGWS.KEYSTORE.ALIAS:
