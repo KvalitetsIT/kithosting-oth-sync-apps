@@ -13,14 +13,6 @@ service:
       requests:
         cpu: 25m
         memory: 50Mi
-    readinessProbe:
-      httpGet:
-        port: 3306
-      initialDelaySeconds: 5
-      periodSeconds: 5
-      successThreshold: 1
-      timeoutSeconds: 1
-      failureThreshold: 10
 
   service:
     port: 80
