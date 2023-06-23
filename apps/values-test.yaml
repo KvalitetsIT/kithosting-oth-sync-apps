@@ -28,3 +28,10 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
+
+    cradb:
+      path: cradb
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-test.yaml
