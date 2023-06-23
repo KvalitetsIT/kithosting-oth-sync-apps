@@ -11,6 +11,7 @@ mariadb:
     ##
     existingSecret: cra-database-credentials
 
+namespace: oth-sync
 sealedSecrets:
   cra-database-credentials:
     encryptedData:
