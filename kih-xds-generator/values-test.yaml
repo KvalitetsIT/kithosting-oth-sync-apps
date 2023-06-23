@@ -29,7 +29,7 @@ service:
       XDS.GENERATE.DOCUMENTID:
         value: "true"
       XDS.ITI41.ENDPOINT:
-        value: "http://dgwsxdsvalidationproxy"
+        value: "http://dgwsxdsvalidationproxy/kih-iti41/iti41"
       SOR.CODE:
         value: "6071000016008"
       SOR.NAME:
