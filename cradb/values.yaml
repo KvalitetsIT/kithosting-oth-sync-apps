@@ -11,6 +11,14 @@ mariadb:
     ##
     existingSecret: cra-database-credentials
 
+  primary:
+    extraVolumes:
+      mysql: |
+        emtpyDir: {}
+    extraVolumeMounts:
+      mysql:
+        mountPath: /var/lib/mysql
+
 namespace: oth-sync
 sealedSecrets:
   cra-database-credentials:
