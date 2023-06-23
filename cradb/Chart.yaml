@@ -1,0 +1,7 @@
+apiVersion: v2
+name: cradb
+version: 12.2.5
+dependencies:
+  - name: mariadb
+    version: 12.2.5
+    repository: https://charts.bitnami.com/bitnami

@@ -1,0 +1,18 @@
+mariadb:
+  image:
+    repository: registry.nspop.dk/platform/cradb
+    tag: latest
+    pullPolicy: Always
+    debug: false
+  auth:
+    database: cra
+    username: "dgwsxdsvalidationproxy"
+    ## @param auth.existingSecret Use existing secret for password details (`auth.rootPassword`, `auth.password`, `auth.replicationPassword` will be ignored and picked up from this secret). The secret has to contain the keys `mariadb-root-password`, `mariadb-replication-password` and `mariadb-password`
+    ##
+    existingSecret: cra-database-credentials
+
+sealedSecrets:
+  cra-database-credentials:
+    encryptedData:
+      auth.rootPassword: AgAeES6hA78xL5Y/4Bxwp77vkU83qj8TQqKh0G0WAycUZcjjeZIAk4Ojy9Ek8bGMGj8ngeSFT+fxbNjmntMnHW2LJ+lY4WoXHUMXOzyaLz4sGEzI7lH2545e7kK0p+Ab/8c8m762zCynbj5A6Qb84BUO8etm5FOIL2r8ELBpwjvz6w87vpXILD9EhlwL932+Lsl9aRtoZucbc0Rc8ClLwpAFzpDnNlDmt4ZJb3uKZLr2mHSz9VPjxO7NcGSbHA9/yMH6G6PiybH6/q66Te8gC/pqr2+eYKhN2wz+FTpxpM2wf6A+4MItzggcsE5czml1080HwU6/0p2VU8K/dZP8iYvm4PRn/Q8juJd4X23EYaWM7fkqHv5n1MZsLjpTjOwox3Ha0/k3WvVp8DAS5oEhB3Aq2EpciBmyEGQERN7qT6Z8SdcXkWaa8Qd4LtXOp/R1c6DkfUQREaoy1Uu9WXyfD1Vbob+5/ZmmUHkntYItK3++qS9+NwY6UD68lObGbPCsyO6JICbYMAWZX6W3sx8BUV1Rhnh9+B6D/8glH5wgB9C3GP7zlaKU4YCseVVXMlneJF5FsImmZBAlSAfvkpBHwLuNYs4Qmt8+YrF5VQpqtSfyV4+LpUGCyBFndIj3heLLLwi5KjE/g8YDJ2iwuOvHYmYrRIZoBjPkxPgJE7r3cclvzl7YOaKytQJoTGjYQgTxjFZGEhA4aVgRkGkJ0IxcO8kR
+      auth.password: AgCfXapNr2uKYIBYPHSq1FpxJueKy0HJGvn/m1rZM9jmoB9CiuQ6EAnL08HTNZHFaIBAyqla7nYDGykXo8fpWs2w2tYb7nhQLaCiGWvQsAEZiPKrohJNiDZYIK/ASaHWd2t24XFrqpYMmEjBJludEwIGu1atUzTQNCt0JrG2ND056Ik/5Sj1csMVvRn7pS0htVOX0esV2gQzTu947BP2KIpdt3HZPq6AFmIWtXxlhxR4jcxFm89AwW5PhzqIB/YpHuPj5id6toGpPhEDA4W7PEWyQ6EW1zRe3XL+jm9Htvw6XCyPM6yJmFBejo6K7GCs9LIDYFn7hk66SkB6RwbGbKHcMztkdqjUQ0oxIdj1WhlUsrSVwqc8djz1++gXQ4LjfpHGhYfNSOQVMojZj7g9mPilfh8oHxbw3obYOaYuRlOi5T0vXP6niuyb4IpKG5BFFEIKtb+ON/VoEIv1yb6f4XW2c8ZbxUtAcGZxK7wkUm916YBREScd6ii3rVCmDYyRXM2kmhrQXpOEDzc5Uxtg1yjSwbVxWzAVYYBlf51nohiN3j+g785fa20f3yZgB/jsqebSDd1oWo9zsGaR1CNxt05t6hrc4a7fzjZJN4+oI7kupaA2BPNvQDmYF6rq56NnRJQ2uE64+XZmGTqv8P8CbmPgWHtUL3wYgc2EIZIB4Ai2VMXo/L1k698M5UbbYvCAsn7n9ypwnyhPHpnnLgpZE/jO
