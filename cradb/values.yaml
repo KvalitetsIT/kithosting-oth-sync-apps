@@ -1,6 +1,6 @@
 service:
   namespace: oth-sync
-  fullnameOverride: kih-xds-generator
+  fullnameOverride: cradb
   image:
     repository: registry.nspop.dk/platform/cradb
     tag: "latest"
