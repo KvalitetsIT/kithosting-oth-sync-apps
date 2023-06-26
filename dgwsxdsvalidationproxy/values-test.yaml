@@ -53,9 +53,9 @@ service:
         value: "true"
       LOG_CDA_DOCUMENT_DECODE:
         value: "false"
-      HTTP_CLIENT_MAX_TOTAL_CONNECTIONS:
+      HTTP.CLIENT.MAX.TOTAL.CONNECTIONS:
         value: "2"
-      HTTP_CLIENT_DEFAULT_MAX_CONNECTIONS_PER_ROUTE:
+      HTTP.CLIENT.DEFAULT.MAX.CONNECTIONS.PER.ROUTE:
         value: "2"
       SERVICE_VERSION:
         value: "v1.3.9"
