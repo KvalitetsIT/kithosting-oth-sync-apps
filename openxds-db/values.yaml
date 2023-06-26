@@ -16,7 +16,7 @@ mariadb:
       - name: mysql
         emtpyDir: {}
     extraVolumeMounts:
-      - name: aria-log-control
+      - name: mysql
         mountPath: /var/lib/mysql
     configMapMountPaths:
       01_db.sql:
