@@ -44,7 +44,7 @@ service:
       ALLOW_ITI43:
         value: "false"
       CDA_VALIDATION_CLIENT_ENDPOINT:
-        value: "unknown"
+        value: "http://cdavalidateservice/services/validate"
       DOCUMENT_TYPE_CODES_CODE:
         value: "53576-5;74468-0;74465-6;39289-4;"
       DOCUMENT_TYPE_CODES_NAME:
