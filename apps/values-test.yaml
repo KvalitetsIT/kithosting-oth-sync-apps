@@ -43,3 +43,10 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
+
+    openxds-db:
+      path: openxds-db
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-test.yaml

@@ -1,0 +1,8 @@
+apiVersion: v2
+name: openxds-db
+version: 12.2.5
+Namespace: oth-sync
+dependencies:
+  - name: mariadb
+    version: 12.2.5
+    repository: https://charts.bitnami.com/bitnami
