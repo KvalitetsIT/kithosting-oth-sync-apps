@@ -30,6 +30,9 @@ service:
       openxds-ds.xml:
         configMapMountPath: /pack/wildfly8/standalone/deployments/openxds-ds.xml
         configMapMountSubPath: openxds-ds.xml
+      cra-ds.xml:
+        configMapMountPath: /pack/wildfly8/standalone/deployments/cra-ds.xml
+        configMapMountSubPath: cra-ds.xml
   extraConfigMap:
     openxds-ds.xml: |
       <?xml version="1.0" encoding="UTF-8"?>
@@ -50,6 +53,28 @@ service:
                   <background-validation-millis>10000</background-validation-millis>
               </validation>
           </datasource>
+      </datasources>
+    cra-ds.xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <datasources>
+        <datasource jndi-name="java:jboss/datasources/CRARO" pool-name="craDS" enabled="true" spy="true">
+            <connection-url>jdbc:mysql://cradb-mariadb:3306/cra?autoReconnect=true</connection-url>
+            <driver>mysql</driver>
+            <pool>
+                <min-pool-size>2</min-pool-size>
+                <max-pool-size>20</max-pool-size>
+            </pool>
+            <security>
+                <user-name>dgwsxdsvalidationproxy</user-name>
+                <password>VKTDaTLAxmVk2UgP</password>
+            </security>
+            <validation>
+                <check-valid-connection-sql>select 1</check-valid-connection-sql>
+                <validate-on-match>true</validate-on-match>
+                <background-validation>true</background-validation>
+                <background-validation-millis>10000</background-validation-millis>
+            </validation>
+        </datasource>
       </datasources>
 
   service:
