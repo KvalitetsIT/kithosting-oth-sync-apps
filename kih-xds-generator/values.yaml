@@ -19,7 +19,7 @@ service:
       httpGet:
         path: /actuator/health
         port: 9010
-      initialDelaySeconds: 5
+      initialDelaySeconds: 10
       periodSeconds: 5
       successThreshold: 1
       timeoutSeconds: 1
