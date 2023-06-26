@@ -13,10 +13,10 @@ mariadb:
 
   primary:
     extraVolumes:
-      - name: aria_log_control
+      - name: aria-log-control
         emtpyDir: {}
     extraVolumeMounts:
-      - name: aria_log_control
+      - name: aria-log-control
         mountPath: /var/lib/mysql/aria_log_control
     configMapMountPaths:
       01_db.sql:
