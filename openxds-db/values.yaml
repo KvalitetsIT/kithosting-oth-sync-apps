@@ -1,7 +1,7 @@
 mariadb:
   image:
     repository: mariadb
-    tag: "10.5"
+    tag: "10.1"
     pullPolicy: Always
     debug: false
   auth:
@@ -12,6 +12,12 @@ mariadb:
     existingSecret: openxds-database-credentials
 
   primary:
+    extraVolumes:
+      aria_log_control: |
+        emtpyDir: {}
+    extraVolumeMounts:
+      aria_log_control:
+        mountPath: /var/lib/mysql/aria_log_control
     configMapMountPaths:
       01_db.sql:
         configMapMountPath: /docker-entrypoint-initdb.d/01_db.sql
