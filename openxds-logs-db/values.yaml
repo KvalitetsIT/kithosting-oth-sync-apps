@@ -9,7 +9,7 @@ mariadb:
     username: "openxds-logs"
     ## @param auth.existingSecret Use existing secret for password details (`auth.rootPassword`, `auth.password`, `auth.replicationPassword` will be ignored and picked up from this secret). The secret has to contain the keys `mariadb-root-password`, `mariadb-replication-password` and `mariadb-password`
     ##
-    existingSecret: openxds-logs-database-credentials
+    existingSecret: openxds-logs-credentials
 
   primary:
     extraVolumes:
@@ -173,7 +173,7 @@ mariadb:
 
 namespace: oth-sync
 sealedSecrets:
-  openxds-logs-database-credentials:
+  openxds-logs-credentials:
     encryptedData:
       auth.rootPassword: AgArqVFPOglXoZd5rUIin94cruAZMfLMf+03bqFIeDZvpLoqGhhvMO8+3i7ZhIWvkf/FR13SKtVMauIuk/VEi5svC3+FIv75ILL1lnoDU6IhMj9oljPUJvzwApQLHrc5QrGD2coUneydvICvwMFZx3ODcgcNR1iVAv+Cof9QPAa0gNUET1XmL7E9d4sS6d14c3+aXz3okfkSonnq349O5UiWzMj3OkuHYBLiv3bmCUvUrnRBVr4x/jfBB7/1PQKa9iDj+TXQzDTkYjFgYDCXK/gq+WcKarUV+n0zW+d7D3jSuYDu/pNN5es50WI4tQwXlOorTU6A5Z/VEuMGBHXYRmkb4jf5K0jHXeO63f9JDxztgM45welYr57BeVDbrlXCcCm2VeGb0BXqRxsQ4052shH/aSDrH8viHMyki07XJhglmqRfDnccQdBF+yEhNP+3TL43GCSruHt5Eoz7b9Mm4+FIA865966FwoC8372Ij9tFrl1llon6ahlqA7oXHZ2qhfBofIB3v40JdUZHeuCNnV8PMZpCgXqyszIbIDbDIAnQSvdOIexy04ZtW4MFiPK5pgArvPzgj99aAWAkIF+p5gpiFEfs19kKkuSawVadncZiK7+ZegZOhMhqaJPa7sBo213y7KlbR7aN29E3VErD3SqZaxcfEEmxhK8J6UklbXlo2CdxWTTY6ONx/OVq1v+AKu9TQV3tFnZnZ4IcSNEBPO4i
       mariadb-root-password: AgArqVFPOglXoZd5rUIin94cruAZMfLMf+03bqFIeDZvpLoqGhhvMO8+3i7ZhIWvkf/FR13SKtVMauIuk/VEi5svC3+FIv75ILL1lnoDU6IhMj9oljPUJvzwApQLHrc5QrGD2coUneydvICvwMFZx3ODcgcNR1iVAv+Cof9QPAa0gNUET1XmL7E9d4sS6d14c3+aXz3okfkSonnq349O5UiWzMj3OkuHYBLiv3bmCUvUrnRBVr4x/jfBB7/1PQKa9iDj+TXQzDTkYjFgYDCXK/gq+WcKarUV+n0zW+d7D3jSuYDu/pNN5es50WI4tQwXlOorTU6A5Z/VEuMGBHXYRmkb4jf5K0jHXeO63f9JDxztgM45welYr57BeVDbrlXCcCm2VeGb0BXqRxsQ4052shH/aSDrH8viHMyki07XJhglmqRfDnccQdBF+yEhNP+3TL43GCSruHt5Eoz7b9Mm4+FIA865966FwoC8372Ij9tFrl1llon6ahlqA7oXHZ2qhfBofIB3v40JdUZHeuCNnV8PMZpCgXqyszIbIDbDIAnQSvdOIexy04ZtW4MFiPK5pgArvPzgj99aAWAkIF+p5gpiFEfs19kKkuSawVadncZiK7+ZegZOhMhqaJPa7sBo213y7KlbR7aN29E3VErD3SqZaxcfEEmxhK8J6UklbXlo2CdxWTTY6ONx/OVq1v+AKu9TQV3tFnZnZ4IcSNEBPO4i
