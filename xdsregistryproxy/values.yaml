@@ -17,6 +17,7 @@ service:
         memory: 50Mi
     readinessProbe:
       httpGet:
+        path: /health
         port: 8080
       initialDelaySeconds: 5
       periodSeconds: 5
