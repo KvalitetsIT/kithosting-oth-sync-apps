@@ -30,7 +30,7 @@ service:
       LOG_MAX_BACKUP_INDEX:
         value: "5"
       NOTIFY_RABBITMQ:
-        value: "true"
+        value: "false"
       LOG_LEVEL:
         value: "DEBUG"
 
