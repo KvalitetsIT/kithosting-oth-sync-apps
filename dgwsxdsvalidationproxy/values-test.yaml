@@ -63,17 +63,17 @@ service:
         value: "INFO"
       NSP_TEST_FEDERATION:
         value: "true"
-      DK.NSP.CRA.DB.HOST:
+      NSP_CRA_DB_HOST:
         value: "cradb-mariadb-0"
-      DK.NSP.CRA.DB.USER:
+      NSP_CRA_DB_USER:
         value: "dgwsxdsvalidationproxy"
-      DK.NSP.CRA.DB.PASSWORD:
+      NSP_CRA_DB_PASSWORD:
         type: secretKeyRef
         name: dgwsxdsvalidationproxy-cra-database-credentials
         key: password
-      DK.NSP.CRA.DB.POOL.MIN:
+      NSP_CRA_DB_POOL_MIN:
         value: "2"
-      DK.NSP.CRA.DB.POOL.MAX:
+      NSP_CRA_DB_POOL_MAX:
         value: "20"
 
   sealedSecret:
