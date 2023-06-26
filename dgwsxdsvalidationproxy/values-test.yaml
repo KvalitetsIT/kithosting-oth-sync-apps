@@ -26,9 +26,9 @@ service:
       LOG_MAX_BACKUP_INDEX:
         value: 5
       ITI41_BACKEND_URL:
-        value: "unknown"
+        value: "http://openxds-server/axis2/services/xdsrepositoryb"
       ITI43_BACKEND_URL:
-        value: "uknown"
+        value: "http://openxds-server/axis2/services/xdsrepositoryb"
       LOGGING_RULES_LOG_CPRNUMBER:
         value: "true"
       LOGGING_RULES_LOG_CLINICAL_DOCUMENT:

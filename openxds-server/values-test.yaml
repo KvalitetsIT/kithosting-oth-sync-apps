@@ -1,0 +1,44 @@
+networkPolicy:
+  loadbalancer: 49.12.22.127/32
+
+service:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        more_set_headers "X-Request-Id: $req_id";
+    hosts:
+      - host: openxds-server.t0.hosting.kitkube.dk
+        paths:
+          - path: /
+    tls:
+      - hosts:
+          - openxds-server.t0.hosting.kitkube.dk
+        secretName: openxds-server.t0.hosting.kitkube.dk
+
+  deployment:
+    env:
+      XDS_REGISTRY_HOST:
+        value: "unknown"
+      XDS_REGISTRY_PORT:
+        value: "unknown"
+      XDS_REPOSITORY_UNIQUE_ID:
+        value: "1.3.6.1.4.1.21367.2010.1.2.1125"
+      XDS_HOME_COMMUNITY_ID:
+        value: "urn:oid:1.3.6.1.4.1.21367.2010.1.2.2045"
+      XDS_DB_OPENXDS_URL:
+        value: "unknown"
+      XDS_DB_OPENXDS_USERNAME:
+        value: "unknown"
+      XDS_DB_OPENXDS_PASSWORD:
+        value: "unknown"
+      XDS_DB_LOGS_URL:
+        value: "unknown"
+      XDS_DB_LOGS_USERNAME:
+        value: "unknown"
+      XDS_DB_LOGS_PASSWORD:
+        value: "unknown"
+      XARGS:
+        value: "Xmx128m"

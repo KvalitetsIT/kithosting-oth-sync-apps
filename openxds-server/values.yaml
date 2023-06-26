@@ -1,0 +1,38 @@
+service:
+  namespace: oth-sync
+  fullnameOverride: openxds-server
+  imagePullSecrets:
+    - name: kithosting-dockerhub
+  revisionHistoryLimit: 3
+  image:
+    repository: registry.nspop.dk/components/openxds
+    tag: "2.0.10"
+  replicaCount: 2
+
+  deployment:
+    containerPort: 8010
+    resources:
+      requests:
+        cpu: 25m
+        memory: 50Mi
+    readinessProbe:
+      httpGet:
+        port: 8010
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+      failureThreshold: 10
+    env:
+      XDS_REGISTRY_URL:
+        value: "/proxy"
+      XDS_DB_DIALECT:
+        value: "org.hibernate.dialect.MySQLDialect"
+      XDS_DB_DRIVER:
+        value: "com.mysql.jdbc.Driver"
+      XDS_LOG_LEVEL:
+        value: "debug"
+
+  service:
+    port: 80
+    targetPort: container-port

@@ -28,7 +28,7 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
-    
+
     cradb:
       path: cradb
       targetRevision: main
@@ -37,3 +37,9 @@ argoApps:
         - values-test.yaml
       namespace: oth-sync
 
+    openxds-server:
+      path: openxds-server
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-test.yaml
