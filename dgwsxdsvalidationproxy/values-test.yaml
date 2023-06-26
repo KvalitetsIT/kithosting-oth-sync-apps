@@ -63,20 +63,21 @@ service:
         value: "INFO"
       NSP_TEST_FEDERATION:
         value: "true"
-      NSP_CRA_DB_HOST:
-        value: "cradb-mariadb-0"
-      NSP_CRA_DB_USER:
-        value: "dgwsxdsvalidationproxy"
-      NSP_CRA_DB_PASSWORD:
-        type: secretKeyRef
-        name: dgwsxdsvalidationproxy-cra-database-credentials
-        key: password
-      NSP_CRA_DB_POOL_MIN:
-        value: "2"
-      NSP_CRA_DB_POOL_MAX:
-        value: "20"
+      # TODO: maybe use these variables instead of configmap cra-ds.xml
+      # NSP_CRA_DB_HOST:
+      #   value: "cradb-mariadb-0"
+      # NSP_CRA_DB_USER:
+      #   value: "dgwsxdsvalidationproxy"
+      # NSP_CRA_DB_PASSWORD:
+      #   type: secretKeyRef
+      #   name: dgwsxdsvalidationproxy-cra-database-credentials
+      #   key: password
+      # NSP_CRA_DB_POOL_MIN:
+      #   value: "2"
+      # NSP_CRA_DB_POOL_MAX:
+      #   value: "20"
 
-  sealedSecret:
-    dgwsxdsvalidationproxy-cra-database-credentials:
-      encryptedData:
-        password: AgBSlrQHaZcapGzUsZwOwCCmQBOctkANOB6R7X0/CZAs78wwGkpGD8OHtZ99AGgI1C06H9qxZRNXTVBJ99fREVSX5hchFfqXoA4RaWeFvcPiWN5u2XZ68AbHzUplMfC2bCGByG0xxULaa99rGDUHUJBjFXBx/Pq9UI1lzeGZR35gPhE1BjBamymno5RMXA+LCW5pl1xcmTnUQJzQUHni7FjpxO3g24CVCtMXyatqnthScRAcOGRlHjDStMEvh2eTAtf88F9KnmmGurbsJ9z72Fu5ABn7psTETJBZX5QwRHGfgQhVZLwg5dk/rQQj/t6w60wDFktnUhlIPT6G1DBI9EcbzzkrSe6EPM4wlA1qOPGQ3S2BnuKszwN041Vz16ucp5AzcAc4D8YTMdPZL5lfG01MeztNyYDCL7/IuR7FarbAtge5OGz7B0hGFLPiIFbgdThpnMnNRT46SWJRLgnYC1loA+Z+5QbMTUZJG5HJJk56EVZOaHRMulLknrsIBig0QvG/sFMl4u1tT3xDZYxIJZoC95rfElKYz+c273ZwwU5l6531ceiWiIOkacgQ8ln1joJoF6GB1XqyRpiNnUVsAnEPdyAWEMFYZy3n6tto21qO3T2NQUAYDerNUennzqVs9bQwohNwsxX6F3JuhzmJ4Rr4mpYyKctN0EHL3kRgarrmS62dHO9U6tavrMyvwHfiyrKCqbIl89T1q/08MIIHGWtN
+  # sealedSecret:
+  #   dgwsxdsvalidationproxy-cra-database-credentials:
+  #     encryptedData:
+  #       password: AgBSlrQHaZcapGzUsZwOwCCmQBOctkANOB6R7X0/CZAs78wwGkpGD8OHtZ99AGgI1C06H9qxZRNXTVBJ99fREVSX5hchFfqXoA4RaWeFvcPiWN5u2XZ68AbHzUplMfC2bCGByG0xxULaa99rGDUHUJBjFXBx/Pq9UI1lzeGZR35gPhE1BjBamymno5RMXA+LCW5pl1xcmTnUQJzQUHni7FjpxO3g24CVCtMXyatqnthScRAcOGRlHjDStMEvh2eTAtf88F9KnmmGurbsJ9z72Fu5ABn7psTETJBZX5QwRHGfgQhVZLwg5dk/rQQj/t6w60wDFktnUhlIPT6G1DBI9EcbzzkrSe6EPM4wlA1qOPGQ3S2BnuKszwN041Vz16ucp5AzcAc4D8YTMdPZL5lfG01MeztNyYDCL7/IuR7FarbAtge5OGz7B0hGFLPiIFbgdThpnMnNRT46SWJRLgnYC1loA+Z+5QbMTUZJG5HJJk56EVZOaHRMulLknrsIBig0QvG/sFMl4u1tT3xDZYxIJZoC95rfElKYz+c273ZwwU5l6531ceiWiIOkacgQ8ln1joJoF6GB1XqyRpiNnUVsAnEPdyAWEMFYZy3n6tto21qO3T2NQUAYDerNUennzqVs9bQwohNwsxX6F3JuhzmJ4Rr4mpYyKctN0EHL3kRgarrmS62dHO9U6tavrMyvwHfiyrKCqbIl89T1q/08MIIHGWtN
