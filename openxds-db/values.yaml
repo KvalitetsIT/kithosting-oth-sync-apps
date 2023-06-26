@@ -13,11 +13,11 @@ mariadb:
 
   primary:
     extraVolumes:
-      - name: aria-log-control
+      - name: mysql
         emtpyDir: {}
     extraVolumeMounts:
       - name: aria-log-control
-        mountPath: /var/lib/mysql/aria_log_control
+        mountPath: /var/lib/mysql
     configMapMountPaths:
       01_db.sql:
         configMapMountPath: /docker-entrypoint-initdb.d/01_db.sql
