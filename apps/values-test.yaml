@@ -50,9 +50,16 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
-    
+
     openxds-logs-db:
       path: openxds-logs-db
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-test.yaml
+
+    xdsregistryproxy:
+      path: xdsregistryproxy
       targetRevision: main
       valueFiles:
         - values.yaml

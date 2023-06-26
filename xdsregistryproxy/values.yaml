@@ -1,0 +1,38 @@
+service:
+  namespace: oth-sync
+  fullnameOverride: xdsregistryproxy
+  imagePullSecrets:
+    - name: kithosting-dockerhub
+  revisionHistoryLimit: 3
+  image:
+    repository: kvalitetsit/xdsregistryproxy
+    tag: "f5d0a84eecda45ce236934a475e7728f17ee61d4"
+  replicaCount: 2
+
+  deployment:
+    containerPort: 8080
+    resources:
+      requests:
+        cpu: 25m
+        memory: 50Mi
+    readinessProbe:
+      httpGet:
+        port: 8080
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+      failureThreshold: 10
+    env:
+      LOG_MAX_FILE_SIZE:
+        value: "10MB"
+      LOG_MAX_BACKUP_INDEX:
+        value: "5"
+      notify_rabbitmq:
+        value: "false"
+      LOG_LEVEL:
+        value: "DEBUG"
+
+  service:
+    port: 80
+    targetPort: container-port
