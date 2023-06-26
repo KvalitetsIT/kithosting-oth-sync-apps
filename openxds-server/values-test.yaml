@@ -33,19 +33,22 @@ service:
       XDS_DB_OPENXDS_USERNAME:
         value: "openxds"
       XDS_DB_OPENXDS_PASSWORD:
-        value: "unknown"
+        type: secretKeyRef
+        name: openxds-server-database-credentials
+        key: openxds-password
       XDS_DB_LOGS_URL:
         value: "openxds-logs-db"
       XDS_DB_LOGS_USERNAME:
         value: "openxds-logs"
       XDS_DB_LOGS_PASSWORD:
-        value: "unknown"
+        type: secretKeyRef
+        name: openxds-server-database-credentials
+        key: openxds-logs-password
       XARGS:
         value: "Xmx128m"
 
   sealedSecret:
-    database-credentials:
+    openxds-server-database-credentials:
       encryptedData:
-        openxds-password: 
-        openxds-logs-password: 
-
+        openxds-password: AgBULxvutvEjSIn55Frb7BFzfTi7KRd4T3GT1qPUsJusmH95OfnJxRahaRpo3r0GTbVWUV7hytj3JJ7alwpMZBsAwy1yqXbLWHz/+AS9QrfP2aq+ZxMSpf/YNmoiT5lBIZ4e41kipCXm93AtCqsk17JG7ouUub464H0KB0xTvLhywZOyDP1oiJEP4F9pK9LN8YTuWMsN5msuc3tHXsC21ghkARD1TPX4RnUkxZhyjSvzGrO8TUrYwNc8oBPunN/6ZB8+yqbpfuaD02oBxTS43zYoa631/otoN/Espjn8dco458sX5Y22JogM4BIey0AmgZ4WguhqEoFgo4efl/ekPjE+KpZ3Pye2ogGdfuLlVPJ6XTkhvR52tDcCg1WIfZbpJzBnFD7o8V3e+sAHojaDCSUX/7Hee6YPvZWpVLQQ7O15j3LCHHLn77FH0m86T9RBRlc/jNKK4pe4HSEkGdkFKK76T5AtsyXzt4IGLUeDBnshHi/huMNbU7gp1uA0h4mo6dDNF142eGdLDVMol2HruSKQr/cU5l8hOea4PpIaPpypOhnyoS/QKzZwt+jqR3+xb/QKXDI8QVHXGXcBjcnLnJhCZ6psBH8oFJyLGLQy1EgFN2giQ4APgqF7auLY2NtGbnAYJvrJnuwQxxf/aVD/luxDNClGPuvKHRkkxEvuFBYGO5i1uMsht+kyo4/+tS98eZmBa9qvqYFdBmn+oWDnYITF
+        openxds-logs-password: AgBULxvutvEjSIn55Frb7BFzfTi7KRd4T3GT1qPUsJusmH95OfnJxRahaRpo3r0GTbVWUV7hytj3JJ7alwpMZBsAwy1yqXbLWHz/+AS9QrfP2aq+ZxMSpf/YNmoiT5lBIZ4e41kipCXm93AtCqsk17JG7ouUub464H0KB0xTvLhywZOyDP1oiJEP4F9pK9LN8YTuWMsN5msuc3tHXsC21ghkARD1TPX4RnUkxZhyjSvzGrO8TUrYwNc8oBPunN/6ZB8+yqbpfuaD02oBxTS43zYoa631/otoN/Espjn8dco458sX5Y22JogM4BIey0AmgZ4WguhqEoFgo4efl/ekPjE+KpZ3Pye2ogGdfuLlVPJ6XTkhvR52tDcCg1WIfZbpJzBnFD7o8V3e+sAHojaDCSUX/7Hee6YPvZWpVLQQ7O15j3LCHHLn77FH0m86T9RBRlc/jNKK4pe4HSEkGdkFKK76T5AtsyXzt4IGLUeDBnshHi/huMNbU7gp1uA0h4mo6dDNF142eGdLDVMol2HruSKQr/cU5l8hOea4PpIaPpypOhnyoS/QKzZwt+jqR3+xb/QKXDI8QVHXGXcBjcnLnJhCZ6psBH8oFJyLGLQy1EgFN2giQ4APgqF7auLY2NtGbnAYJvrJnuwQxxf/aVD/luxDNClGPuvKHRkkxEvuFBYGO5i1uMsht+kyo4/+tS98eZmBa9qvqYFdBmn+oWDnYITF
