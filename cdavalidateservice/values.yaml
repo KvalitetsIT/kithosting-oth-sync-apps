@@ -1,0 +1,45 @@
+service:
+  namespace: oth-sync
+  fullnameOverride: cdavalidateservice
+  imagePullSecrets:
+    - name: kithosting-dockerhub
+  revisionHistoryLimit: 3
+  image:
+    repository: kvalitetsit/cdavalidateservice
+    tag: "1.0.0"
+  replicaCount: 2
+
+  deployment:
+    containerPort: 8080
+    resources:
+      requests:
+        cpu: 25m
+        memory: 50Mi
+    readinessProbe:
+      httpGet:
+        path: "/metrics"
+        port: 8080
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+      failureThreshold: 10
+    env:
+      LOG_MAX_FILE_SIZE:
+        value: "10MB"
+      LOG_MAX_BACKUP_INDEX:
+        value: "5"
+      VALIDATION_RULES_XDS_ROOT_PATH:
+        value: ""
+      DOCUMENT_TYPE_CODES_CODE:
+        value: "53576-5;74468-0;74465-6;"
+      DOCUMENT_TYPE_CODES_NAME:
+        value: "PHMR;QFDD;QRD;"
+      LOG_DOCUMENT_CONTENT:
+        value: "true"
+      LOG_LEVEL:
+        value: "INFO"
+
+  service:
+    port: 80
+    targetPort: container-port

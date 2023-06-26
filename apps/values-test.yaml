@@ -64,3 +64,10 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
+
+    cdavalidateservice:
+      path: cdavalidateservice
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-test.yaml
