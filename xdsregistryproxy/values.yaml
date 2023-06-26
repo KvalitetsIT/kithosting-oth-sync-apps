@@ -17,6 +17,7 @@ service:
         memory: 50Mi
     readinessProbe:
       httpGet:
+        path: "/health"
         port: 8080
       initialDelaySeconds: 5
       periodSeconds: 5
@@ -28,8 +29,8 @@ service:
         value: "10MB"
       LOG_MAX_BACKUP_INDEX:
         value: "5"
-      notify_rabbitmq:
-        value: "false"
+      NOTIFY_RABBITMQ:
+        value: "true"
       LOG_LEVEL:
         value: "DEBUG"
 
