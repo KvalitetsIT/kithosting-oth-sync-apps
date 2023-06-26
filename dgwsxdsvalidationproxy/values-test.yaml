@@ -54,9 +54,9 @@ service:
       LOG_CDA_DOCUMENT_DECODE:
         value: "false"
       HTTP_CLIENT_MAX_TOTAL_CONNECTIONS:
-        value: 2
+        value: "2"
       HTTP_CLIENT_DEFAULT_MAX_CONNECTIONS_PER_ROUTE:
-        value: 2
+        value: "2"
       SERVICE_VERSION:
         value: "v1.3.9"
       LOG_LEVEL:
@@ -72,9 +72,9 @@ service:
         name: dgwsxdsvalidationproxy-cra-database-credentials
         key: password
       DK.NSP.CRA.DB.POOL.MIN:
-        value: 2
+        value: "2"
       DK.NSP.CRA.DB.POOL.MAX:
-        value: 20
+        value: "20"
 
   sealedSecret:
     dgwsxdsvalidationproxy-cra-database-credentials:
