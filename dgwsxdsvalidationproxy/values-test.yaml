@@ -25,9 +25,9 @@ service:
         value: "10MB"
       LOG_MAX_BACKUP_INDEX:
         value: 5
-      ITI41_BACKEND_URL:
+      iti41_backend_url:
         value: "http://openxds-server/axis2/services/xdsrepositoryb"
-      ITI43_BACKEND_URL:
+      iti43_backend_url:
         value: "http://openxds-server/axis2/services/xdsrepositoryb"
       LOGGING_RULES_LOG_CPRNUMBER:
         value: "true"
@@ -43,7 +43,7 @@ service:
         value: "true"
       ALLOW_ITI43:
         value: "false"
-      CDA_VALIDATION_CLIENT_ENDPOINT:
+      cda_validation_client_endpoint:
         value: "http://cdavalidateservice/services/validate"
       DOCUMENT_TYPE_CODES_CODE:
         value: "53576-5;74468-0;74465-6;39289-4;"
