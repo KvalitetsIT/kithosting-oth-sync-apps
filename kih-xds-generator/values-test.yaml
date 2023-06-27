@@ -43,7 +43,7 @@ service:
       DGWS.KEYSTORE.ALIAS:
         value: "tu generel foces gyldig (funktionscertifikat)"
       DGWS.KEYSTORE.FILENAME:
-        value: "file:/app/conf2/FOCES_gyldig_2025.p12"
+        value: "file:/app/conf/FOCES_gyldig_2025.p12"
       DGWS.KEYSTORE.PASSWORD:
         type: secretKeyRef
         name: dgws-credentials
