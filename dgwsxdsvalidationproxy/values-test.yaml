@@ -29,35 +29,35 @@ service:
         value: "http://openxds-server/axis2/services/xdsrepositoryb"
       iti43_backend_url:
         value: "http://openxds-server/axis2/services/xdsrepositoryb"
-      LOGGING_RULES_LOG_CPRNUMBER:
+      logging_rules_log_cprnumber:
         value: "true"
-      LOGGING_RULES_LOG_CLINICAL_DOCUMENT:
+      logging_rules_log_clinical_document:
         value: "true"
-      VALIDATION_RULES_VALIDATE_DOCUMENT:
+      validation_rules_validate_document:
         value: "true"
-      VALIDATION_RULES_CONTINUE_ON_ERROR:
+      validation_rules_continue_on_error:
         value: "false"
-      REPORTING_RULES_REPORT_DOCUMENT:
+      reporting_rules_report_document:
         value: "true"
-      ALLOW_ITI41:
+      allow_iti41:
         value: "true"
-      ALLOW_ITI43:
+      allow_iti43:
         value: "false"
       cda_validation_client_endpoint:
         value: "http://cdavalidateservice/services/validate"
-      DOCUMENT_TYPE_CODES_CODE:
+      document_type_codes_code:
         value: "53576-5;74468-0;74465-6;39289-4;"
-      DOCUMENT_TYPE_CODES_NAME:
+      document_type_codes_name:
         value: "PHMR;QFDD;QRD;APD;"
-      LOG_CDA_DOCUMENT_DECODE_EXCEPTION:
+      log_cda_document_decode_exception:
         value: "true"
-      LOG_CDA_DOCUMENT_DECODE:
+      log_cda_document_decode:
         value: "false"
       http_client_max_total_connections:
         value: "2"
       http_client_defalt_max_connections_per_route:
         value: "2"
-      SERVICE_VERSION:
+      service_version:
         value: "v1.3.9"
       LOG_LEVEL:
         value: "INFO"
