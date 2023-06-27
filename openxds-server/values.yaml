@@ -36,3 +36,7 @@ service:
   service:
     port: 80
     targetPort: container-port
+    extraPorts:
+      eightytwenty:
+        port: 80
+        targetPort: 8020

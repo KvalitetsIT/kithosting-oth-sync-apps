@@ -8,8 +8,6 @@ service:
     annotations:
       kubernetes.io/ingress.class: "nginx"
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        more_set_headers "X-Request-Id: $req_id";
     hosts:
       - host: dgwsxdsvalidationproxy.oth-sync.t0.hosting.kitkube.dk
         paths:
@@ -26,9 +24,9 @@ service:
       LOG_MAX_BACKUP_INDEX:
         value: 5
       iti41_backend_url:
-        value: "http://openxds-server/axis2/services/xdsrepositoryb"
+        value: "http://openxds-server:8020/axis2/services/xdsrepositoryb"
       iti43_backend_url:
-        value: "http://openxds-server/axis2/services/xdsrepositoryb"
+        value: "http://openxds-server:8020/axis2/services/xdsrepositoryb"
       logging_rules_log_cprnumber:
         value: "true"
       logging_rules_log_clinical_document:
@@ -44,7 +42,7 @@ service:
       allow_iti43:
         value: "false"
       cda_validation_client_endpoint:
-        value: "http://cdavalidateservice/services/validate"
+        value: "http://cdavalidateservice:8080/services/validate"
       document_type_codes_code:
         value: "53576-5;74468-0;74465-6;39289-4;"
       document_type_codes_name:

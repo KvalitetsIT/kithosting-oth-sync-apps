@@ -28,13 +28,13 @@ service:
         value: "10MB"
       LOG_MAX_BACKUP_INDEX:
         value: "5"
-      VALIDATION_RULES_XDS_ROOT_PATH:
+      validation_rules_xds_root_path:
         value: ""
-      DOCUMENT_TYPE_CODES_CODE:
+      document_type_codes_code:
         value: "53576-5;74468-0;74465-6;"
-      DOCUMENT_TYPE_CODES_NAME:
+      document_type_codes_name:
         value: "PHMR;QFDD;QRD;"
-      LOG_DOCUMENT_CONTENT:
+      log_document_content:
         value: "true"
       LOG_LEVEL:
         value: "INFO"

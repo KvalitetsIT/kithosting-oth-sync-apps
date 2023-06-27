@@ -7,8 +7,6 @@ service:
     annotations:
       kubernetes.io/ingress.class: "nginx"
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        more_set_headers "X-Request-Id: $req_id";
     hosts:
       - host: cdavalidateservice.oth-sync.t0.hosting.kitkube.dk
         paths:
