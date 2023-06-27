@@ -24,33 +24,33 @@ service:
       LOG_MAX_BACKUP_INDEX:
         value: 5
       iti41_backend_url:
-        value: "http://openxds-server:8020/axis2/services/xdsrepositoryb"
+        value: "http://openxds-server/axis2/services/xdsrepositoryb"
       iti43_backend_url:
-        value: "http://openxds-server:8020/axis2/services/xdsrepositoryb"
+        value: "http://openxds-server/axis2/services/xdsrepositoryb"
       logging_rules_log_cprnumber:
-        value: "true"
+        value: true
       logging_rules_log_clinical_document:
-        value: "true"
+        value: true
       validation_rules_validate_document:
-        value: "true"
+        value: true
       validation_rules_continue_on_error:
-        value: "false"
+        value: false
       reporting_rules_report_document:
-        value: "true"
+        value: true
       allow_iti41:
-        value: "true"
+        value: true
       allow_iti43:
-        value: "false"
+        value: false
       cda_validation_client_endpoint:
-        value: "http://cdavalidateservice:8080/services/validate"
+        value: "http://cdavalidateservice/services/validate"
       document_type_codes_code:
         value: "53576-5;74468-0;74465-6;39289-4;"
       document_type_codes_name:
         value: "PHMR;QFDD;QRD;APD;"
       log_cda_document_decode_exception:
-        value: "true"
+        value: true
       log_cda_document_decode:
-        value: "false"
+        value: false
       http_client_max_total_connections:
         value: "2"
       http_client_defalt_max_connections_per_route:
@@ -61,6 +61,7 @@ service:
         value: "INFO"
       NSP_TEST_FEDERATION:
         value: true
+
       # TODO: maybe use these variables instead of configmap cra-ds.xml
       # NSP_CRA_DB_HOST:
       #   value: "cradb-mariadb-0"
