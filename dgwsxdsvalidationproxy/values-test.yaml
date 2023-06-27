@@ -60,7 +60,7 @@ service:
       LOG_LEVEL:
         value: "INFO"
       NSP_TEST_FEDERATION:
-        value: "true"
+        value: true
       # TODO: maybe use these variables instead of configmap cra-ds.xml
       # NSP_CRA_DB_HOST:
       #   value: "cradb-mariadb-0"
