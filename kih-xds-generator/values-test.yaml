@@ -88,10 +88,10 @@ service:
       commands:
         - bash
         - "-c"
-        - "openssl pkcs12 -export -in /input/tls.crt -inkey /input/tls.key -name 'tu generel foces gyldig (funktionscertifikat)' -out /app/conf/FOCES_gyldig_2025.p12 -password pass:Test1234 -passin pass:Test1234;"
+        - "openssl pkcs12 -export -in /input/tls.crt -inkey /input/tls.key -name 'tu generel foces gyldig (funktionscertifikat)' -out /output/FOCES_gyldig_2025.p12 -password pass:Test1234 -passin pass:Test1234;"
       extraVolumeMounts:
         keystore-dir:
-          mountPath: /app/conf
+          mountPath: /output
         dgws-credential-key:
           mountPath: /input/tls.key
           subPath: tls.key
