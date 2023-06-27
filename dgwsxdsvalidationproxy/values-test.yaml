@@ -61,8 +61,8 @@ service:
       service_version:
         value: "v1.3.9"
       LOG_LEVEL:
-        value: "INFO"
+        value: "DEBUG"
       NSP_TEST_FEDERATION:
         value: true
       NSP_HANDLER_LOG_MIN_LEVEL:
-        value: "verbose"
+        value: "INFO"
