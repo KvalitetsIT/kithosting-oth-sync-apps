@@ -46,7 +46,7 @@ service:
               </pool>
               <security>
                   <user-name>openxds</user-name>
-                  <password>open123</password>
+                  <password>arhsWUVz5XLpu4uk</password>
               </security>
               <validation>
                   <check-valid-connection-sql>select 1</check-valid-connection-sql>
