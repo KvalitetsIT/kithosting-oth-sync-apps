@@ -61,3 +61,5 @@ service:
         value: "INFO"
       NSP_TEST_FEDERATION:
         value: true
+      NSP_HANDLER_LOG_MIN_LEVEL:
+        value: "verbose"
