@@ -3,7 +3,7 @@ service:
   fullnameOverride: kih-xds-generator
   image:
     repository: kvalitetsit/kih-xds-generator
-    tag: "63016fbc19eda774b3db376b18171ef9f45d1503"
+    tag: "6db7fa75fb106ad197d521f3c9b55cf053ab93e0"
   imagePullSecrets:
     - name: kithosting-dockerhub
   revisionHistoryLimit: 3
