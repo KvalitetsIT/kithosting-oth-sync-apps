@@ -26,7 +26,7 @@ spec:
           port: 53
     - to: # Public LoadBal
         - ipBlock:
-            cidr: { { .Values.networkPolicy.loadbalancer } }
+            cidr: {{ .Values.networkPolicy.loadbalancer }}
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
