@@ -1,7 +1,7 @@
 mariadb:
   image:
-    repository: bitnami/mariadb
-    tag: "10.11.4-debian-11-r0"
+    repository: mariadb
+    tag: "10.1"
     pullPolicy: Always
     debug: false
   auth:
@@ -10,8 +10,21 @@ mariadb:
     ## @param auth.existingSecret Use existing secret for password details (`auth.rootPassword`, `auth.password`, `auth.replicationPassword` will be ignored and picked up from this secret). The secret has to contain the keys `mariadb-root-password`, `mariadb-replication-password` and `mariadb-password`
     ##
     existingSecret: openxds-database-credentials
-
   primary:
+    extraEnvVars:
+      - name: MYSQL_ROOT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            key: mariadb-root-password
+            name: openxds-database-credentials
+      - name: MYSQL_DATABASE
+        value: "openxds"
+        valueFrom:
+          secretKeyRef:
+            key: mariadb-password
+            name: openxds-database-credentials
+      - name: MYSQL_USER
+        value: "openxds"
     configuration: |-
       [mysqld]
       skip-host-cache
