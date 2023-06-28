@@ -922,8 +922,8 @@ mariadb:
       INSERT INTO affectedobject VALUES('urn:freebxml:registry:predefinedusers:farrukh', null, 'urn:freebxml:registry:predefinedEvent:createFarrukh');
 
       INSERT INTO `user_` VALUES('urn:freebxml:registry:predefinedusers:nikola', null, 'urn:freebxml:registry:predefinedusers:nikola', 'urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:Person:User', 'urn:oasis:names:tc:ebxml-regrep:StatusType:Submitted',  '1.0', null,  'Nikola', null, 'Stojanovic');
-      INSERT INTO telephoneNumber VALUES('11', '381', '', '222-2222', 'OfficePhone', 'urn:freebxml:registry:predefinedusers:nikola');
-      INSERT INTO telephoneNumber VALUES('11', '381', '', '444-4444', 'HomePhone', 'urn:freebxml:registry:predefinedusers:nikola');
+      INSERT INTO telephonenumber VALUES('11', '381', '', '222-2222', 'OfficePhone', 'urn:freebxml:registry:predefinedusers:nikola');
+      INSERT INTO telephonenumber VALUES('11', '381', '', '444-4444', 'HomePhone', 'urn:freebxml:registry:predefinedusers:nikola');
       INSERT INTO emailaddress VALUES('nhomest1@twcny.rr.com', 'OfficeEmail', 'urn:freebxml:registry:predefinedusers:nikola');
       -- We make the owner of the User object to be the user itself.
       INSERT INTO auditableevent VALUES('urn:freebxml:registry:predefinedEvent:createNikola', null, 'urn:freebxml:registry:predefinedEvent:createNikola', 'urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:auditableevent', 'urn:oasis:names:tc:ebxml-regrep:StatusType:Submitted', '1.0', null,  '//TODO', 'urn:oasis:names:tc:ebxml-regrep:EventType:Created', '2003-12-10 10:53:24', 'urn:freebxml:registry:predefinedusers:nikola');
