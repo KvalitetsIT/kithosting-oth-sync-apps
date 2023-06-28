@@ -29,9 +29,9 @@ service:
       ENV_CLINICIAN_URL:
         value: "https://oth-demo.oth.io/clinician/api"
       ENV_AUTHENTICATION_KEY:
-        type: secretKeyRef
-        name: clinician-authentication
-        key: key
+          type: secretKeyRef
+          name: clinician-authentication
+          key: key
       ENV_AUTHENTICATION_SECRET:
         type: secretKeyRef
         name: clinician-authentication
