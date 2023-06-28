@@ -706,13 +706,13 @@ mariadb:
       /*!40101 SET character_set_client = @saved_cs_client */;
 
       --
-      -- Table structure for table `slot`
+      -- Table structure for table `Slot`
       --
 
-      DROP TABLE IF EXISTS `slot`;
+      DROP TABLE IF EXISTS `Slot`;
       /*!40101 SET @saved_cs_client     = @@character_set_client */;
       /*!40101 SET character_set_client = utf8 */;
-      CREATE TABLE `slot` (
+      CREATE TABLE `Slot` (
         `sequenceId` int(11) NOT NULL,
         `name_` varchar(256) NOT NULL,
         `slotType` varchar(256) DEFAULT NULL,
