@@ -41,8 +41,8 @@ service:
               <connection-url>jdbc:mysql://openxds-db-mariadb:3306/openxds</connection-url>
               <driver>mysql</driver>
               <pool>
-                  <min-pool-size>20</min-pool-size>
-                  <max-pool-size>200</max-pool-size>
+                  <min-pool-size>2</min-pool-size>
+                  <max-pool-size>20</max-pool-size>
               </pool>
               <security>
                   <user-name>openxds</user-name>
@@ -61,8 +61,8 @@ service:
             <connection-url>jdbc:mysql://cradb-mariadb:3306/cra?autoReconnect=true</connection-url>
             <driver>mysql</driver>
             <pool>
-                <min-pool-size>20</min-pool-size>
-                <max-pool-size>200</max-pool-size>
+                <min-pool-size>2</min-pool-size>
+                <max-pool-size>20</max-pool-size>
             </pool>
             <security>
                 <user-name>dgwsxdsvalidationproxy</user-name>
