@@ -66,3 +66,9 @@ service:
         value: true
       NSP_HANDLER_LOG_MIN_LEVEL:
         value: "INFO"
+      CRA_SERVER:
+        value: "cradb-mariadb"
+      CRA_USER:
+        value: "dgwsxdsvalidationproxy"
+      CRA_PWD:
+        value: "VKTDaTLAxmVk2UgP"
