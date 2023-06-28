@@ -25,7 +25,7 @@ service:
       failureThreshold: 10
     env:
       XDS_REGISTRY_URL:
-        value: "axis2/services/xdsrepositoryb"
+        value: "/proxy"
       XDS_DB_DIALECT:
         value: "org.hibernate.dialect.MySQLDialect"
       XDS_DB_DRIVER:
