@@ -45,7 +45,7 @@ service:
         name: openxds-server-database-credentials
         key: openxds-logs-password
       XARGS:
-        value: "-Xmx128m"
+        value: -Xmx128m
 
   sealedSecret:
     openxds-server-database-credentials:
