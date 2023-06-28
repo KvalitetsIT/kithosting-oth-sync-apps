@@ -21,9 +21,9 @@ service:
   deployment:
     env:
       XDS_REGISTRY_HOST:
-        value: "openxds-server"
+        value: "xdsregistryproxy"
       XDS_REGISTRY_PORT:
-        value: "8010"
+        value: "80"
       XDS_REPOSITORY_UNIQUE_ID:
         value: "1.3.6.1.4.1.21367.2010.1.2.1125"
       XDS_HOME_COMMUNITY_ID:
