@@ -1,7 +1,7 @@
 mariadb:
   image:
     repository: mariadb
-    tag: "10.5"
+    tag: "10.1"
     pullPolicy: Always
     debug: false
   auth:
