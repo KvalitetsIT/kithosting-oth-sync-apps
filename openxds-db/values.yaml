@@ -17,12 +17,13 @@ mariadb:
           secretKeyRef:
             key: mariadb-root-password
             name: openxds-database-credentials
-      - name: MYSQL_DATABASE
-        value: "openxds"
+      - name: MYSQL_PASSWORD
         valueFrom:
           secretKeyRef:
             key: mariadb-password
             name: openxds-database-credentials
+      - name: MYSQL_DATABASE
+        value: "openxds"
       - name: MYSQL_USER
         value: "openxds"
     configuration: |-
