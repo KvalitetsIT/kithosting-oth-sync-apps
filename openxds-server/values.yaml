@@ -34,9 +34,9 @@ service:
         value: "debug"
 
   service:
-    port: 80
+    port: 8010
     targetPort: container-port
     extraPorts:
       eightytwenty:
-        port: 80
+        port: 8020
         targetPort: 8020

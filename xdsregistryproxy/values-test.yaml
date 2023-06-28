@@ -21,4 +21,4 @@ service:
   deployment:
     env:
       XDSREGISTRY_PROXY_REMOTE_ITI_42:
-        value: "http://openxds-server/axis2/services/xdsregistryb"
+        value: "http://openxds-server:8010/axis2/services/xdsregistryb"
