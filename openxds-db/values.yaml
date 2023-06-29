@@ -1,9 +1,4 @@
 mariadb:
-  image:
-    repository: mariadb
-    tag: "10.1"
-    pullPolicy: Always
-    debug: false
   auth:
     database: "openxds"
     username: "openxds"
