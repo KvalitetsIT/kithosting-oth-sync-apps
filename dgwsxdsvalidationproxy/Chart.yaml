@@ -1,7 +1,7 @@
 apiVersion: v2
 name: dgwsxdsvalidationproxy
-version: 1.29.3
+version: 1.31.1
 dependencies:
   - name: service
-    version: 1.29.3
+    version: 1.31.1
     repository: https://raw.githubusercontent.com/KvalitetsIT/helm-repo/master/
