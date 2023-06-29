@@ -28,7 +28,6 @@ mariadb:
       slow_query_log_file=/opt/bitnami/mariadb/logs/mysqld.log
       long_query_time=10.0
       datadir = /var/lib/mysql
-      !includedir /etc/mysql/conf.d/
       lower_case_table_names=1
       general_log=1
       general_log_file=/var/lib/mysql/mysql.log
