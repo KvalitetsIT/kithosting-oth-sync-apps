@@ -6,6 +6,11 @@ mariadb:
     debug: false
 
   primary:
+    resources:
+      limits: { }
+      requests:
+        cpu: 100m
+        memory: 256Mi
     extraVolumes:
       - name: mysql
         emtpyDir: {}
