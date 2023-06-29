@@ -1,6 +1,0 @@
-dependencies:
-- name: service
-  repository: https://raw.githubusercontent.com/KvalitetsIT/helm-repo/master/
-  version: 1.29.3
-digest: sha256:ec290318df5aebaf78ceef62958c5107ec17a3f3399dfd12e993ba8a804507e9
-generated: "2023-06-28T14:51:12.945252057+02:00"
