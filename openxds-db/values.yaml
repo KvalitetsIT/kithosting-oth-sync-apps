@@ -9,7 +9,7 @@ mariadb:
     existingSecret: openxds-database-credentials
   primary:
     resources:
-      limits: {}
+      limits: { }
       requests:
         cpu: 100m
         memory: 256Mi
