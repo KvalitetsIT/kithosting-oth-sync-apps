@@ -66,6 +66,19 @@ service:
         value: true
       NSP_HANDLER_LOG_MIN_LEVEL:
         value: "INFO"
+    extraVolumes:
+      openxds-ds.xml: |
+        secret:
+          secretName: dgwsxdsvalidationproxy-datasources
+          items:
+          - key: openxds-ds.xml
+            path: openxds-ds.xml
+      cra-ds.xml: |
+        secret:
+          secretName:   dgwsxdsvalidationproxy-datasources
+          items:
+          - key: cra-ds.xml
+            path: cra-ds.xml
     extraVolumeMounts:
       openxds-ds.xml:
         mountPath: /pack/wildfly8/standalone/deployments/openxds-ds.xml
