@@ -7,6 +7,7 @@ mariadb:
     ## @param auth.existingSecret Use existing secret for password details (`auth.rootPassword`, `auth.password`, `auth.replicationPassword` will be ignored and picked up from this secret). The secret has to contain the keys `mariadb-root-password`, `mariadb-replication-password` and `mariadb-password`
     ##
     existingSecret: openxds-database-credentials
+    usePasswordFiles: false
   primary:
     configuration: |
       [mysqld]
