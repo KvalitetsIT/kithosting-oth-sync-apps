@@ -8,21 +8,6 @@ mariadb:
     ##
     existingSecret: openxds-database-credentials
   primary:
-    extraEnvVars:
-      - name: MYSQL_ROOT_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            key: mariadb-root-password
-            name: openxds-database-credentials
-      - name: MYSQL_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            key: mariadb-password
-            name: openxds-database-credentials
-      - name: MYSQL_DATABASE
-        value: "openxds"
-      - name: MYSQL_USER
-        value: "openxds"
     configuration: |
       [mysqld]
       skip-host-cache
