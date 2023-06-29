@@ -1,6 +1,7 @@
 mariadb:
   image:
     debug: true
+    tag: "10.1.46"
   auth:
     database: "openxds"
     username: "openxds"
