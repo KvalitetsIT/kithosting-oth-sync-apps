@@ -26,56 +26,6 @@ service:
     extraVolumeMounts:
       log:
         mountPath: /pack/wildfly8/standalone/log
-    # configMapMountPaths:
-    #   openxds-ds.xml:
-    #     configMapMountPath: /pack/wildfly8/standalone/deployments/openxds-ds.xml
-    #     configMapMountSubPath: openxds-ds.xml
-    #   cra-ds.xml:
-    #     configMapMountPath: /pack/wildfly8/standalone/deployments/cra-ds.xml
-    #     configMapMountSubPath: cra-ds.xml
-  # extraConfigMap:
-  #   openxds-ds.xml: |
-  #     <?xml version="1.0" encoding="UTF-8"?>
-  #     <datasources>
-  #         <datasource jndi-name="java:jboss/datasources/openxds" pool-name="openxds" enabled="true" spy="false">
-  #             <connection-url>jdbc:mysql://openxds-db-mariadb:3306/openxds</connection-url>
-  #             <driver>mysql</driver>
-  #             <pool>
-  #                 <min-pool-size>2</min-pool-size>
-  #                 <max-pool-size>20</max-pool-size>
-  #             </pool>
-  #             <security>
-  #                 <user-name>openxds</user-name>
-  #                 <password>arhsWUVz5XLpu4uk</password>
-  #             </security>
-  #             <validation>
-  #                 <check-valid-connection-sql>select 1</check-valid-connection-sql>
-  #                 <background-validation-millis>10000</background-validation-millis>
-  #             </validation>
-  #         </datasource>
-  #     </datasources>
-  #   cra-ds.xml: |
-  #     <?xml version="1.0" encoding="UTF-8"?>
-  #     <datasources>
-  #       <datasource jndi-name="java:jboss/datasources/CRARO" pool-name="craDS" enabled="true" spy="true">
-  #           <connection-url>jdbc:mysql://cradb-mariadb:3306/cra?autoReconnect=true</connection-url>
-  #           <driver>mysql</driver>
-  #           <pool>
-  #               <min-pool-size>2</min-pool-size>
-  #               <max-pool-size>20</max-pool-size>
-  #           </pool>
-  #           <security>
-  #               <user-name>dgwsxdsvalidationproxy</user-name>
-  #               <password>VKTDaTLAxmVk2UgP</password>
-  #           </security>
-  #           <validation>
-  #               <check-valid-connection-sql>select 1</check-valid-connection-sql>
-  #               <validate-on-match>true</validate-on-match>
-  #               <background-validation>true</background-validation>
-  #               <background-validation-millis>10000</background-validation-millis>
-  #           </validation>
-  #       </datasource>
-  #     </datasources>
 
   service:
     port: 80
