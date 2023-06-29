@@ -1,0 +1,7 @@
+apiVersion: v2
+name: cda-viewer
+version: 1.9.0
+dependencies:
+  - name: openid
+    version: 1.4.3
+    repository: https://raw.githubusercontent.com/KvalitetsIT/helm-repo/master/

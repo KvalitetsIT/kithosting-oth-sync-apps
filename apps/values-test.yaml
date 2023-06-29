@@ -71,3 +71,16 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
+
+    redis-cda:
+      path: redis-cda
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+
+    cda-viewer:
+      path: cda-viewer
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-test.yaml

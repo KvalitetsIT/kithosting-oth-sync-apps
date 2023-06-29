@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: cda-viewer
+  namespace: oth-sync
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: cda-viewer
+      app.kubernetes.io/name: openid
+  policyTypes:
+    - Egress
+  egress:
+    - ports:
+        - port: 8080
+          protocol: TCP
+        - port: 8443
+          protocol: TCP
+      to:
+        - ipBlock: # test1.ekstern-test.nspop.dk
+            cidr: 77.243.54.153/32
+        - ipBlock: # test1-cnsp.ekstern-test.nspop.dk
+            cidr: 77.243.54.152/32
+    - ports:
+        - port: 443
+          protocol: TCP
+      to:
+        - ipBlock: # test-loadbalancer1
+            cidr: 49.12.22.127/32
+        - ipBlock: # prod-loadbalancer1
+            cidr: 49.12.18.64/32
+    - to: # nodeLocal DNS
+        - ipBlock:
+            cidr: 169.254.20.10/32
+      ports:
+        - protocol: UDP
+          port: 53

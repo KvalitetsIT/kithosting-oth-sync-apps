@@ -1,0 +1,348 @@
+openid:
+  fullnameOverride: cda-viewer
+  namespace: oth-sync
+  replicaCount: 1
+
+  image:
+    repository: kvalitetsit/cdadocumentviewer-webgui
+    tag: "53c38becd672b8092a9c52e8857b179b46174e05"
+
+  imagePullSecrets:
+    - name: kithosting-dockerhub
+
+  serviceAccount:
+    create: false
+  initContainers:
+    keystorebuilder:
+      image:
+        repository: "openjdk"
+        tag: "11-jre-slim"
+      commands:
+        - bash
+        - "-c"
+        - "rm /output/moces.jks; openssl pkcs12 -export -in /input/moces.crt -inkey /input/moces.key -name sosi:alias_system -out mymoces.p12 -password pass:Test1234; keytool -importkeystore -srckeystore mymoces.p12 -srcstoretype pkcs12 -srcalias sosi:alias_system -srcstorepass Test1234 -destkeystore /output/moces.jks -deststoretype jks -deststorepass Test1234 -destalias sosi:alias_system"
+      configMapMountPaths:
+        moces.key:
+          configMapMountPath: /input/moces.key
+          configMapMountSubPath: moces.key
+        moces.crt:
+          configMapMountPath: /input/moces.crt
+          configMapMountSubPath: moces.crt
+      extraVolumeMounts:
+        keystore-dir:
+          mountPath: /output
+  deployment:
+    containerPort: 8080
+
+    securityContext:
+      runAsNonRoot: false
+      readOnlyRootFilesystem: false
+
+    resources:
+      requests:
+        memory: "512Mi"
+        cpu: 100m
+
+    readinessProbe:
+      httpGet:
+        path: /about
+        port: 8080
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+      failureThreshold: 10
+
+    env:
+      LOG4J_FORMAT_MSG_NO_LOOKUPS:
+        value: "true"
+      #      JVM_OPTS:
+      #        value: "-Xms64m -Xmx512m"
+      server.max-http-header-size:
+        value: "100000"
+      SPRING_REDIS_PORT:
+        value: "6379"
+      SPRING_REDIS_HOST:
+        value: "redis-cda-master"
+
+      SPRING_SERVLET_MULTIPART_MAX:
+        value: "-1"
+      CONTEXT:
+        value: "cdaviewer"
+
+      # Den gode webservice
+      STS_URL:
+        value: "https://test2.ekstern-test.nspop.dk:8443/sts/services/SecurityTokenService"
+      sts_idcard_expiry_hours:
+        value: 7
+      DGWS_CERTIFICATE_ITSYSTEM:
+        value: "TRUST2408 Systemtest XIX CA"
+
+      MOCES_KEYSTORE_ALIAS:
+        value: "sosi:alias_system"
+      MOCES_KEYSTORE_FILENAME:
+        value: "file:/app/config/keystores/moces.jks"
+      MOCES_KEYSTORE_PASSWORD:
+        value: "Test1234"
+      MOCES_CERTIFICATE_ORGNAME:
+        value: "LAKESIDE A/S"
+      MOCES_CERTIFICATE_CVR:
+        value: "25450442"
+      MOCES_HSUID_USER_TYPE:
+        value: "nsi:HealthcareProfessional"
+      MOCES_HSUID_USER_CPR:
+        value: "0804569723"
+      MOCES_HSUID_SOR_CODE:
+        value: "293591000016003"
+      MOCES_HSUID_SYSTEM_OWNER:
+        value: "Lakeside"
+      MOCES_HSUID_SYSTEM_NAME:
+        value: "CDAViewer"
+      MOCES_HSUID_SYSTEM_VERSION:
+        value: "1.0"
+      MOCES_HSUID_ORG_NAME:
+        value: "MyOrganisation"
+      MOCES_HSUID_ISSUER:
+        value: "CDAViewer"
+      MOCES_HSUID_USER_AUTHORIZATION_CODE:
+        value: "CBNH1"
+      MOCES_HSUID_FIRSTNAME:
+        value: "Casper"
+      MOCES_HSUID_LASTNAME:
+        value: "Rasmussen"
+
+      #table values for dropdownlists and other reference data
+      TYPE_CODE_SCHEME:
+        value: "2.16.840.1.113883.6.1"
+      FORMAT_CODE_SCHEME:
+        value: "1.2.208.184.100.10"
+      #      EVENT_CODE_SCHEME:
+      #        value: "1.2.208.176.2.1"
+      event_code_scheme_codes:
+        value: "1.2.208.176.2.1;1.2.208.176.2.4;"
+      event_code_scheme_names:
+        value: "NPU;Episode of care label;"
+      HEALTHCAREFACILITYTYPE_CODE_SCHEME:
+        value: "2.16.840.1.113883.6.96"
+      PRACTICESETTING_CODE_SCHEME:
+        value: "2.16.840.1.113883.6.96"
+      CLASS_CODE_SCHEME:
+        value: "1.2.208.184.100.9"
+      AVAILABILITYSTATUS_CODES:
+        value: "APPROVED;"
+      AVAILABILITYSTATUS_NAMES:
+        value: "Approved;"
+      FORMAT_CODE_CODES:
+        value: "urn:ad:dk:medcom:phmr:full;urn:ad:dk:medcom:qfdd:full;urn:ad:dk:medcom:qrd:full;urn:ad:dk:medcom:qrd-v1.3:full;urn:ad:dk:medcom:appointmentsummary:full;urn:ad:dk:medcom:labreports:svareksponeringsservice;"
+      FORMAT_CODE_NAMES:
+        value: "DK PHMR schema;DK QFDD schema;DK QRD schema;DK QRD schema;DK Appointment Summary Document schema;Laboratoriesvar (samling af svar);"
+      CLASS_CODE_CODES:
+        value: "001;001;001;001;"
+      CLASS_CODE_NAMES:
+        value: "Klinisk rapport;Klinisk rapport;Klinisk rapport;Klinisk rappport;"
+      HEALTHCAREFACILITYTYPE_CODE_CODES:
+        value: "N/A;264372000;20078004;554221000005108;554031000005103;546821000005103;547011000005103;546811000005109;550621000005101;22232009;550631000005103;550641000005106;550651000005108;394761003;550661000005105;42665001;554211000005102;550711000005101;550671000005100;554061000005105;264361005;554041000005106;554021000005101;550681000005102;550691000005104;550701000005104;554231000005106;554051000005108;"
+      HEALTHCAREFACILITYTYPE_CODE_NAMES:
+        value: "N/A;apotek;behandlingscenter for stofmisbrugere;bosted;diætistklinik;ergoterapiklinik;fysioterapiklinik;genoptræningscenter (snomed: rehabiliteringscenter);hjemmesygepleje;hospital;jordemoderklinik;kiropraktor klinik;lægelaboratorium;lægepraksis (snomed:  almen lægepraksis);lægevagt;plejehjem;præhospitals enhed (snomed:  præhospitalsenhed);psykologisk rådgivningsklinik;speciallægepraksis;statsautoriseret fodterapeut (snomed:  fodterapeutklinik);sundhedscenter;sundhedsforvaltning;sundhedspleje;tandlægepraksis;tandpleje klinik;tandteknisk klinik;vaccinationsklinik;zoneterapiklinik;"
+      PRACTICESETTING_CODE_CODES:
+        value: "N/A;408443003;394577000;394821009;394588006;394582007;394914008;394583002;394811001;394585009;408472002;394803006;394807007;419192003;394579002;408463005;394609007;551411000005104;394596001;394600006;394601005;394580004;421661004;408454008;394809005;394592004;418112009;394805004;394584008;394589003;394610002;394591006;394812008;394594003;394801008;394604002;394915009;394611003;394587001;394537008;394810000;554011000005107;394581000;394605001;394603008;408448007;394612005;"
+      PRACTICESETTING_CODE_NAMES:
+        value: "N/A;almen medicin;anæstesiologi;arbejdsmedicin;børne- og ungdomspsykiatri;dermato-venerologi;diagnostisk radiologi;endokrinologi;geriatri;gynækologi og obstetrik;hepatologi;hæmatologi;infektionsmedicin;intern medicin;kardiologi;karkirurgi;kirurgi;kirurgisk gastroenterologi;klinisk biokemi;klinisk farmakologi;klinisk fysiologi og nuklearmedicin (snomed:  klinisk fysiologi);klinisk genetik;klinisk immunologi;klinisk mikrobiologi;klinisk neurofysiologi;klinisk onkologi;lungesygdomme;medicinsk allergologi;medicinsk gastroenterologi;nefrologi;neurokirurgi;neurologi;odontologi (snomed: odontologiske specialer);oftalmologi;ortopædisk kirurgi;oto-rhino-laryngologi;patologisk anatomi og cytologi;plastikkirurgi;psykiatri;pædiatri;reumatologi;Retsmedicin;samfundsmedicin;tand-, mund- og kæbekirurgi;thoraxkirurgi;tropemedicin;urologi;"
+      OBJECT_TYPE_CODES:
+        value: "STABLE;"
+      OBJECT_TYPE_NAMES:
+        value: "Stable;"
+      TYPE_CODE_CODES:
+        value: "53576-5;74468-0;74465-6;11502-2;56446-8;81215-6;39289-4;"
+      TYPE_CODE_NAMES:
+        value: "Personal health monitoring report Document;Questionnaire Form Definition Document;Questionnaire Response Document;LABORATORY REPORT.TOTAL;Appointment Summary Document;Care plan - recommended C-CDA R2.0 & R2.1 sections;Follow-up (referred to) provider &or specialist, appointment date;"
+      map_type_class_type_codes:
+        value: "53576-5;74465-6;11502-2;81215-6;39289-4;"
+      map_type_class_class_codes:
+        value: "001;004;001;003;005;"
+      default_class_code:
+        value: "001"
+
+      # Endpoints
+      ITI_18_ENDPOINT:
+        value: ""
+      ITI_43_ENDPOINT:
+        value: ""
+      ITI_18_DGWS_ENABLED:
+        value: "false"
+      ITI_43_DGWS_ENABLED:
+        value: "false"
+      xds_iti57_endpoint:
+        value: ""
+      xds_iti57_dgws:
+        value: "false"
+
+      xds_iti41_repos_repo_0_name:
+        value: "DROS"
+      xds_iti41_repos_repo_0_endpoint:
+        value: "http://dgwsxdsvalidationproxy/kih-iti41/iti41"
+      xds_iti41_repos_repo_0_dgwsenabled:
+        value: "true"
+      xds_iti41_repos_repo_0_repositoryuniqueid:
+        value: "1.2.208.176.43210.8.1.29"
+      xds_iti41_repos_repo_0_homecommunityid:
+        value: "1.2.208.176.43210.8.20"
+      xds_iti41_repos_repo_0_updateallowed:
+        value: "true"
+      xds_iti41_repos_repo_0_uploadallowed:
+        value: "true"
+      xds_iti41_repos_repo_0_deprecateallowed:
+        value: "true"
+      xds_iti41_repos_repo_0_validdoctypes_0:
+        value: "81215-6"
+      xds_iti41_repos_repo_0_validdoctypes_1:
+        value: "53576-5"
+      xds_iti41_repos_repo_0_validdoctypes_2:
+        value: "74465-6"
+      xds_iti41_repos_repo_0_validdoctypes_3:
+        value: "11502-2"
+      xds_iti41_repos_repo_0_validdoctypes_4:
+        value: "39289-4"
+      xds_iti41_repos_repo_0_validdoctypes_5:
+        value: "57059-8"
+      xds_iti41_repos_repo_0_validdoctypes_6:
+        value: "CMR"
+
+      xds_iti41_repos_repo_1_name:
+        value: "DRS (Forventes at blive udfaset i 2022)"
+      xds_iti41_repos_repo_1_endpoint:
+        value: "http://xdsregistryproxy/proxy"
+      xds_iti41_repos_repo_1_dgwsenabled:
+        value: "true"
+      xds_iti41_repos_repo_1_repositoryuniqueid:
+        value: "1.2.208.176.43210.8.10.11"
+      xds_iti41_repos_repo_1_homecommunityid:
+        value: "1.2.208.176.43210.8.10"
+      xds_iti41_repos_repo_1_updateallowed:
+        value: "true"
+      xds_iti41_repos_repo_1_uploadallowed:
+        value: "true"
+      xds_iti41_repos_repo_1_deprecateallowed:
+        value: "true"
+      xds_iti41_repos_repo_1_validdoctypes_0:
+        value: "81215-6"
+      xds_iti41_repos_repo_1_validdoctypes_1:
+        value: "53576-5"
+      xds_iti41_repos_repo_1_validdoctypes_2:
+        value: "74465-6"
+      xds_iti41_repos_repo_1_validdoctypes_3:
+        value: "11502-2"
+      xds_iti41_repos_repo_1_validdoctypes_4:
+        value: "39289-4"
+      xds_iti41_repos_repo_1_validdoctypes_5:
+        value: "57059-8"
+      xds_iti41_repos_repo_1_validdoctypes_6:
+        value: "CMR"
+
+    extraVolumes:
+      keystore-dir: |
+        emptyDir: {}
+    extraVolumeMounts:
+      keystore-dir:
+        mountPath: /app/config/keystores
+
+  extraConfigMap:
+    moces.key: |
+      Bag Attributes
+          friendlyName: casper rasmussen
+          localKeyID: 54 69 6D 65 20 31 36 30 32 36 30 34 39 32 30 34 33 31
+      Key Attributes: <No Attributes>
+      -----BEGIN PRIVATE KEY-----
+      MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCai2yTrGV+8WRQ
+      qHkINU5NFm3yk81ihSUrNqs+lPIu+09NBFKwoq9vp+5MihA+urqwBH+ivrXWCjsg
+      P+jbOojVS7nJpzs4QxjDk02st9PRTd32KVaT7Uo75endAP3afuQ3BvxX0bJDpYbY
+      XEJM8mR0lHGKDKjsCGk46IKNxWDQvArUc7JilwG5NhxQu2GXnL4ZTuYCUQYrZ/Tu
+      7kWsF44FObqeHFK2NNOyjRuRKFxgdQRtWdDJ3up8pcfSFe/e5bcNzFFU44+QH547
+      cShbvPsDYJLQlqLMVT8nlnavdpDfHAXlAkCxHphVfEDZ1CrKkQItpfLG5MO519b4
+      LuGuDTeNAgMBAAECggEBAJJkf/Vi2MHm559/9yZPWFytYnjmiSdJ+Gt23b/qV38p
+      j3TlI28urACYkqLuJXVGbJFPsZf4D0cxadCiuXDxgayKjvL19qLU7CBW6L0zZPJf
+      UGJdxiVaIXeb0mwHBHB0wrldZKvLd5Gcup84xZUeBwpnkyWx2FG9pe7CUOj6jzsp
+      arA/ymMTxspI3c629Txh3dyl0D84Q46z2F49SN8XhSHjwF0jSzihIPz+4PWx7L0k
+      Zgjs0cT0RvcSTiRMMPys+WhRvU7NSD5hIS7QZ90j9kGptn7KjFVWnFb228PbkLvz
+      T0zluJcZQKWDyKY6EQ9WoxPsFwiNOfs6sXkFd/dmFgECgYEA2fIuuJmAslTlzBu2
+      DWmHB1douLzaLQmy2LeAiVmtjVpJgehFGh7SPGARWWIuiLi+FzX0afkdVyzv4L3v
+      ldsXRvT8iyHd5BtoJulq1gmFTQtyl+Xprp5phDTcXe4dkC10caXmsHuqJkbZOYLA
+      R12KxS52NmwkhrHm0yiplxvM8YcCgYEAtYdOf7Y5gJ7WvvSKECQ5f5rS/Vl8pJVW
+      uwUx7dJHztCCjfO221A1WwZYAZIhiUzbM8JnI5M9CijPeyzZdr7M5TBBGoTK/Cqm
+      LmnWMe92rQWFgEq8vjVuKiInJjyiBeAWYMggSow1zJYCHM7ikl1KHv+m2W6ovUKT
+      7nvla09bI0sCgYBXAmzMndvXVjV3ywhfSmXx9F+GgT7JBDo2cuwJ6Zdz+zuldUlB
+      KFTebav/d0cEplydf5jYRfAEwZfyrWFc/l7IoT3Bff/L9XUbM8zHLn3dSFizc8Jb
+      SDrv4PqpNUrwKHV4ebcjdftz1I0cfKqu0xV3qxjemUXr0FJKss0h2qNzOQKBgG6W
+      OG87HvrJST/Zj8ZXmyOuuTyYaIOHaufSOWGNiitnATHjOBGRYn/KdJC4am/Pf3af
+      xt94UmY/CG8cmnppsD8rT24NWe+XN9fsqA2RuXWceID4htVFjZBjcAAuTfJQWrGp
+      GWrw0dGJzU2ph4PtCzupOQcbD/cEeUR++/uMw5PTAoGBALBVHriFy53UvOWw7P4+
+      +3+FVCVyuJ7oFPKXtpDCMS/7imQdZ/Z7HP/DkM6WH5P+JzRFq3wdPjj9VLOtrt6X
+      10hctlEXxTB5Jt2ilDk2Nyqs5Rv/OgYfXNvo24hqbAGcx+nvzqRl8o7IZBAYXdoy
+      SpvFIeuMwo+HDzJ+mYd3iDDA
+      -----END PRIVATE KEY-----
+
+    moces.crt: |
+      Bag Attributes
+          friendlyName: casper rasmussen
+          localKeyID: 54 69 6D 65 20 31 36 30 32 36 30 34 39 32 30 34 33 31
+      subject=/C=DK/O=LAKESIDE A/S // CVR:25450442/CN=Casper Rasmussen/serialNumber=CVR:25450442-RID:40252666
+      issuer=/C=DK/O=TRUST2408/CN=TRUST2408 Systemtest XXII CA
+      -----BEGIN CERTIFICATE-----
+      MIIGJDCCBQygAwIBAgIEX510rTANBgkqhkiG9w0BAQsFADBJMQswCQYDVQQGEwJE
+      SzESMBAGA1UECgwJVFJVU1QyNDA4MSYwJAYDVQQDDB1UUlVTVDI0MDggU3lzdGVt
+      dGVzdCBYWFhJViBDQTAeFw0yMTA4MjQwNTE2MTlaFw0yNDA4MjQwNTE2MDBaMHEx
+      CzAJBgNVBAYTAkRLMSUwIwYDVQQKDBxMQUtFU0lERSBBL1MgLy8gQ1ZSOjI1NDUw
+      NDQyMTswFwYDVQQDDBBDYXNwZXIgUmFzbXVzc2VuMCAGA1UEBRMZQ1ZSOjI1NDUw
+      NDQyLVJJRDo0MDI1MjY2NjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+      AJqLbJOsZX7xZFCoeQg1Tk0WbfKTzWKFJSs2qz6U8i77T00EUrCir2+n7kyKED66
+      urAEf6K+tdYKOyA/6Ns6iNVLucmnOzhDGMOTTay309FN3fYpVpPtSjvl6d0A/dp+
+      5DcG/FfRskOlhthcQkzyZHSUcYoMqOwIaTjogo3FYNC8CtRzsmKXAbk2HFC7YZec
+      vhlO5gJRBitn9O7uRawXjgU5up4cUrY007KNG5EoXGB1BG1Z0Mne6nylx9IV797l
+      tw3MUVTjj5AfnjtxKFu8+wNgktCWosxVPyeWdq92kN8cBeUCQLEemFV8QNnUKsqR
+      Ai2l8sbkw7nX1vgu4a4NN40CAwEAAaOCAuowggLmMA4GA1UdDwEB/wQEAwID+DCB
+      lwYIKwYBBQUHAQEEgYowgYcwPAYIKwYBBQUHMAGGMGh0dHA6Ly9vY3NwLnN5c3Rl
+      bXRlc3QzNC50cnVzdDI0MDguY29tL3Jlc3BvbmRlcjBHBggrBgEFBQcwAoY7aHR0
+      cDovL20uYWlhLnN5c3RlbXRlc3QzNC50cnVzdDI0MDguY29tL3N5c3RlbXRlc3Qz
+      NC1jYS5jZXIwggEgBgNVHSAEggEXMIIBEzCCAQ8GDSsGAQQBgfRRAgQGAgYwgf0w
+      LwYIKwYBBQUHAgEWI2h0dHA6Ly93d3cudHJ1c3QyNDA4LmNvbS9yZXBvc2l0b3J5
+      MIHJBggrBgEFBQcCAjCBvDAMFgVEYW5JRDADAgEBGoGrRGFuSUQgdGVzdCBjZXJ0
+      aWZpa2F0ZXIgZnJhIGRlbm5lIENBIHVkc3RlZGVzIHVuZGVyIE9JRCAxLjMuNi4x
+      LjQuMS4zMTMxMy4yLjQuNi4yLjYuIERhbklEIHRlc3QgY2VydGlmaWNhdGVzIGZy
+      b20gdGhpcyBDQSBhcmUgaXNzdWVkIHVuZGVyIE9JRCAxLjMuNi4xLjQuMS4zMTMx
+      My4yLjQuNi4yLjYuMBsGA1UdEQQUMBKBEGFubmlAbGFrZXNpZGUuZGswga0GA1Ud
+      HwSBpTCBojA8oDqgOIY2aHR0cDovL2NybC5zeXN0ZW10ZXN0MzQudHJ1c3QyNDA4
+      LmNvbS9zeXN0ZW10ZXN0MzQuY3JsMGKgYKBepFwwWjELMAkGA1UEBhMCREsxEjAQ
+      BgNVBAoMCVRSVVNUMjQwODEmMCQGA1UEAwwdVFJVU1QyNDA4IFN5c3RlbXRlc3Qg
+      WFhYSVYgQ0ExDzANBgNVBAMMBkNSTDIwMTAfBgNVHSMEGDAWgBTNbGiXOXIZpDWr
+      ZOr0EaOBh/hpOzAdBgNVHQ4EFgQU8MfTCJim8igADhfvrbRkDFajp8MwCQYDVR0T
+      BAIwADANBgkqhkiG9w0BAQsFAAOCAQEAlNBrkxMoH7EyTyHkc3a+N9jdqec+3ZCU
+      p/1h0hkN6ykyjnzCu+GTyX34MALEQEaNbMIY1IKx27weM/Hyb6iVtdt/nxQY6FzY
+      9LmfbUln6H2QWFTpP7mj6nZFsm9KczcxdFzc5GSSAGxA9qctw80EWDBMyrK4LUAh
+      J+i0wjNBCPzzc6ymF3GANykG1gWwCz+7qogIgRHZIbDiAj4X7ddZVCaiSaKPm7J6
+      NB5dwFY9iJeURlYIyYl+vEDByzXu9aWuV9UYEaJoMnvIX0PR4FaooaE0xWrtCaS5
+      Lyiw3nnRpFKQLA9Hw+667oGeJpMwDVF7HMlSAKT6GUF4RTsvlrC9gw==
+      -----END CERTIFICATE-----
+
+  service:
+    port: 8080
+    targetPort: proxy-port
+
+  openid:
+    provider: "oidc"
+    clientId: "cda-viewer"
+    emailDomains: "*"
+    clientSecret:
+      name: cda-viewer
+      key: clientSecret
+    cookieSecret:
+      name: cda-viewer
+      key: cookieSecret
+    extraArgs:
+      - "--skip-provider-button=true"
+      - "--set-xauthrequest"
+      - "--skip-jwt-bearer-tokens"
+      - "--skip-auth-preflight"
+      - "--oidc-extra-audience=portal"
+      - "--errors-to-info-log"
+      - "--cookie-name=cda-viewer"
+      - "--proxy-prefix=/oauth2"

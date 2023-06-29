@@ -1,0 +1,23 @@
+openid:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - host: cdaviewer.oth-sync.t0.hosting.kitkube.dk
+        paths:
+          - path: /
+    tls:
+      - hosts:
+          - cdaviewer.oth-sync.t0.hosting.kitkube.dk
+        secretName: cdaviewer.oth-sync.t0.hosting.kitkube.dk
+
+  openid:
+    oidcIssuerUrl: "https://keycloak.t0.hosting.kitkube.dk/auth/realms/oth-sync"
+
+  sealedSecret:
+    cda-viewer-openid:
+      encryptedData:
+        clientSecret: AgDir1KMz0sMEUQxEowP5NGv6a6NQeCLJCNv8XDZx5anpyiaOjozMcOJ8FQozSOcd/TNMsWLdAUKUgj++d2ihoxedmlVPtVuhbRSJu4dtrQXW7UrklJMB2GFJWx73eIjTBvObVcVyZNesXZSQURyK2KDaKbmzZgOom0cHpN/CphTDjOYjfAygGEgD0Uwn15VhHYR10iV48SBisuHiTeEzQSfMAM1jKxD/R4YWB8ITVFPVhZ9jlRrVBqjVRx+VhBUqvtiqh0NcFEfuwpFQJjfSQun9W2ldy5lGqzqLsnRpPSR0OmDYPqIkVsqNpHgrBLJIsR6Zgw50KuCJxwYcl37/lRkrmQngkITELPUEqIiM5OCS2UlJ+Uh1B7aVqUL36yUsRpI+K/ByvGGDi2IfLSXYx0t35hD/rp1bBTzQBiQ71B3B1gUc//+A6sC8i7c8PTT9hJ4nhYax93GHl7wVF5BxOa09Yg7sIwu6Yg2w+/oPN38399SFws/vCKDtSZBUGj6bw/lHqx2JGb9bgMG2ZqBt/DdG3z4CINcp6LpbatAt8gYCr6i7D8h2VopFUjdhKzHp/8ygaI34F4lcou/iNt7KR+61zCscxqXsTAhzadmPG11VCEn7Gb/kI5eWYU/RWM1qv7dyMw/DUl80qs76fF6fQXfcXktSkuUIeUiA12Lay6e3Wyq1bx99sQ/hIFyhgxIxn4dGtv5Uvv6jkcWyB/ANn9zqFPjmCTCQRy5fyPq1bwdPA==
+        cookieSecret:
