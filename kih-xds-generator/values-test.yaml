@@ -2,10 +2,6 @@ networkPolicy:
   loadbalancer: 49.12.22.127/32
 
 service:
-  namespace: oth-sync
-  fullnameOverride: kih-xds-generator
-  image:
-    repository: kvalitetsit/kih-xds-generator
   ingress:
     enabled: true
     annotations:
