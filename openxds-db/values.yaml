@@ -10,16 +10,6 @@ mariadb:
     ## @param auth.existingSecret Use existing secret for password details (`auth.rootPassword`, `auth.password`, `auth.replicationPassword` will be ignored and picked up from this secret). The secret has to contain the keys `mariadb-root-password`, `mariadb-replication-password` and `mariadb-password`
     ##
     existingSecret: openxds-database-credentials
-  secondary:
-    configuration: |
-      [mysqld]
-      skip-host-cache
-      skip-name-resolve
-      datadir = /var/lib/mysql
-      !includedir /etc/mysql/conf.d/
-      lower_case_table_names = 1
-      general_log = 1
-      general_log_file = /var/lib/mysql/mysql.log
   primary:
     extraEnvVars:
       - name: MYSQL_ROOT_PASSWORD
@@ -36,6 +26,15 @@ mariadb:
         value: "openxds"
       - name: MYSQL_USER
         value: "openxds"
+    configuration: |
+      [mysqld]
+      skip-host-cache
+      skip-name-resolve
+      datadir = /var/lib/mysql
+      !includedir /etc/mysql/conf.d/
+      lower_case_table_names=1
+      general_log=1
+      general_log_file=/var/lib/mysql/mysql.log
     extraVolumes:
       - name: mysql
         emtpyDir: {}
