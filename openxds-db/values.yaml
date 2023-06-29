@@ -1,4 +1,6 @@
 mariadb:
+  image:
+    debug: true
   auth:
     database: "openxds"
     username: "openxds"
