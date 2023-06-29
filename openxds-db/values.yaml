@@ -8,6 +8,11 @@ mariadb:
     ##
     existingSecret: openxds-database-credentials
   primary:
+    resources:
+      limits: {}
+      requests:
+        cpu: 100m
+        memory: 256Mi
     configuration: |
       [mysqld]
       skip-host-cache
