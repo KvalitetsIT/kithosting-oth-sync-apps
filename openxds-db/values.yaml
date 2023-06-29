@@ -6,3 +6,13 @@ mariadb:
     username: "openxds"
     password: "Test1234"
     rootPassword: "Test1234"
+
+  primary:
+    configuration: |
+      [mysqld]
+      skip-host-cache
+      skip-name-resolve
+      datadir=/var/lib/mysql
+      lower_case_table_names=1
+      general_log=1
+      general_log_file=/var/lib/mysql/mysql.log
