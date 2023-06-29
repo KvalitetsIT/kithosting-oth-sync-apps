@@ -20,6 +20,10 @@ service:
       successThreshold: 1
       timeoutSeconds: 1
       failureThreshold: 10
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: false
+      runAsNonRoot: false
 
   service:
     port: 80
