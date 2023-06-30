@@ -169,13 +169,13 @@ openid:
       ITI_43_ENDPOINT:
         value: "http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsrepository"
       ITI_18_DGWS_ENABLED:
-        value: "false"
+        value: "true"
       ITI_43_DGWS_ENABLED:
-        value: "false"
+        value: "true"
       xds_iti57_endpoint:
         value: "http://test1-cnsp.ekstern-test.nspop.dk:8080/dros/iti57"
       xds_iti57_dgws:
-        value: "false"
+        value: "true"
 
       xds_iti41_repos_repo_0_name:
         value: "DROS"
