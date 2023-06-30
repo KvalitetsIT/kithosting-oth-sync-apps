@@ -332,10 +332,10 @@ openid:
     clientId: "cda-viewer"
     emailDomains: "*"
     clientSecret:
-      name: cda-viewer
+      name: cda-viewer-openid
       key: clientSecret
     cookieSecret:
-      name: cda-viewer
+      name: cda-viewer-openid
       key: cookieSecret
     extraArgs:
       - "--skip-provider-button=true"
