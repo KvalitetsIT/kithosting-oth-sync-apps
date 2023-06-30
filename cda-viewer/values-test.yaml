@@ -1,3 +1,6 @@
+networkPolicy:
+  loadbalancer: 49.12.22.127/32
+
 openid:
   ingress:
     enabled: true
