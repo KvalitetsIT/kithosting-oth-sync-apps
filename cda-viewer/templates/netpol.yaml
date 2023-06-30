@@ -33,6 +33,12 @@ spec:
             cidr: 49.12.18.64/32
         - ipBlock:
             cidr: 0.0.0.0/0
+    - ports:
+        - port: 80
+          protocol: TCP
+      to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
     - to: # nodeLocal DNS
         - ipBlock:
             cidr: 169.254.20.10/32
