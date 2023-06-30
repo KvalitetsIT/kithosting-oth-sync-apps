@@ -165,15 +165,15 @@ openid:
 
       # Endpoints
       ITI_18_ENDPOINT:
-        value: ""
+        value: "http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsregistry"
       ITI_43_ENDPOINT:
-        value: ""
+        value: "http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsrepository"
       ITI_18_DGWS_ENABLED:
         value: "false"
       ITI_43_DGWS_ENABLED:
         value: "false"
       xds_iti57_endpoint:
-        value: ""
+        value: "http://test1-cnsp.ekstern-test.nspop.dk:8080/dros/iti57"
       xds_iti57_dgws:
         value: "false"
 
