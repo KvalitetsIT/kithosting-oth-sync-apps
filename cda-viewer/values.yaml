@@ -43,15 +43,15 @@ openid:
         memory: "512Mi"
         cpu: 100m
 
-    readinessProbe:
-      httpGet:
-        path: /about
-        port: 8080
-      initialDelaySeconds: 5
-      periodSeconds: 5
-      successThreshold: 1
-      timeoutSeconds: 1
-      failureThreshold: 10
+    # readinessProbe:
+    #   httpGet:
+    #     path: /about
+    #     port: 8080
+    #   initialDelaySeconds: 5
+    #   periodSeconds: 5
+    #   successThreshold: 1
+    #   timeoutSeconds: 1
+    #   failureThreshold: 10
 
     env:
       LOG4J_FORMAT_MSG_NO_LOOKUPS:
