@@ -178,7 +178,7 @@ openid:
         value: "false"
 
       xds_iti41_repos_repo_0_name:
-        value: "DROS"
+        value: "OTH-SYNC"
       xds_iti41_repos_repo_0_endpoint:
         value: "http://dgwsxdsvalidationproxy/kih-iti41/iti41"
       xds_iti41_repos_repo_0_dgwsenabled:
@@ -188,11 +188,11 @@ openid:
       xds_iti41_repos_repo_0_homecommunityid:
         value: "1.2.208.176.43210.8.20"
       xds_iti41_repos_repo_0_updateallowed:
-        value: "true"
+        value: "false"
       xds_iti41_repos_repo_0_uploadallowed:
-        value: "true"
+        value: "false"
       xds_iti41_repos_repo_0_deprecateallowed:
-        value: "true"
+        value: "false"
       xds_iti41_repos_repo_0_validdoctypes_0:
         value: "81215-6"
       xds_iti41_repos_repo_0_validdoctypes_1:
@@ -208,36 +208,36 @@ openid:
       xds_iti41_repos_repo_0_validdoctypes_6:
         value: "CMR"
 
-      xds_iti41_repos_repo_1_name:
-        value: "DRS (Forventes at blive udfaset i 2022)"
-      xds_iti41_repos_repo_1_endpoint:
-        value: "http://xdsregistryproxy/proxy"
-      xds_iti41_repos_repo_1_dgwsenabled:
-        value: "true"
-      xds_iti41_repos_repo_1_repositoryuniqueid:
-        value: "1.2.208.176.43210.8.10.11"
-      xds_iti41_repos_repo_1_homecommunityid:
-        value: "1.2.208.176.43210.8.10"
-      xds_iti41_repos_repo_1_updateallowed:
-        value: "true"
-      xds_iti41_repos_repo_1_uploadallowed:
-        value: "true"
-      xds_iti41_repos_repo_1_deprecateallowed:
-        value: "true"
-      xds_iti41_repos_repo_1_validdoctypes_0:
-        value: "81215-6"
-      xds_iti41_repos_repo_1_validdoctypes_1:
-        value: "53576-5"
-      xds_iti41_repos_repo_1_validdoctypes_2:
-        value: "74465-6"
-      xds_iti41_repos_repo_1_validdoctypes_3:
-        value: "11502-2"
-      xds_iti41_repos_repo_1_validdoctypes_4:
-        value: "39289-4"
-      xds_iti41_repos_repo_1_validdoctypes_5:
-        value: "57059-8"
-      xds_iti41_repos_repo_1_validdoctypes_6:
-        value: "CMR"
+      # xds_iti41_repos_repo_1_name:
+      #   value: "DRS (Forventes at blive udfaset i 2022)"
+      # xds_iti41_repos_repo_1_endpoint:
+      #   value: "http://xdsregistryproxy/proxy"
+      # xds_iti41_repos_repo_1_dgwsenabled:
+      #   value: "true"
+      # xds_iti41_repos_repo_1_repositoryuniqueid:
+      #   value: "1.2.208.176.43210.8.10.11"
+      # xds_iti41_repos_repo_1_homecommunityid:
+      #   value: "1.2.208.176.43210.8.10"
+      # xds_iti41_repos_repo_1_updateallowed:
+      #   value: "true"
+      # xds_iti41_repos_repo_1_uploadallowed:
+      #   value: "true"
+      # xds_iti41_repos_repo_1_deprecateallowed:
+      #   value: "true"
+      # xds_iti41_repos_repo_1_validdoctypes_0:
+      #   value: "81215-6"
+      # xds_iti41_repos_repo_1_validdoctypes_1:
+      #   value: "53576-5"
+      # xds_iti41_repos_repo_1_validdoctypes_2:
+      #   value: "74465-6"
+      # xds_iti41_repos_repo_1_validdoctypes_3:
+      #   value: "11502-2"
+      # xds_iti41_repos_repo_1_validdoctypes_4:
+      #   value: "39289-4"
+      # xds_iti41_repos_repo_1_validdoctypes_5:
+      #   value: "57059-8"
+      # xds_iti41_repos_repo_1_validdoctypes_6:
+      #   value: "CMR"
 
     extraVolumes:
       keystore-dir: |
