@@ -165,17 +165,17 @@ openid:
 
       # Endpoints
       ITI_18_ENDPOINT:
-        value: "http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsregistry"
+        value: "http://openxds-server:8010/axis2/services/xdsregistryb"
       ITI_43_ENDPOINT:
-        value: "http://test1-cnsp.ekstern-test.nspop.dk:8080/ddsrepository"
+        value: "http://openxds-server:8020/axis2/services/xdsrepositoryb"
       ITI_18_DGWS_ENABLED:
-        value: "true"
+        value: "false"
       ITI_43_DGWS_ENABLED:
-        value: "true"
+        value: "false"
       xds_iti57_endpoint:
-        value: "http://test1-cnsp.ekstern-test.nspop.dk:8080/dros/iti57"
+        value: "http://openxds-server:8010/axis2/services/xdsregistryb"
       xds_iti57_dgws:
-        value: "true"
+        value: "false"
 
       xds_iti41_repos_repo_0_name:
         value: "DROS"
