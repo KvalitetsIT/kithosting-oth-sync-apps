@@ -6,7 +6,7 @@ service:
   revisionHistoryLimit: 3
   image:
     repository: kvalitetsit/kih-telecare-exporter
-    tag: "60628821b9f1fa220f3c162fbc1e2b05ef51b632"
+    tag: "0774d04a0b5b20f9797ea0ba551cc6c3b0ef9094"
   replicaCount: 2
 
   deployment:
