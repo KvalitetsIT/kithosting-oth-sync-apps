@@ -1,4 +1,6 @@
 mariadb:
+  image:
+    repository: bitnamilegacy/mariadb
   auth:
     database: "openxds"
     username: "openxds"

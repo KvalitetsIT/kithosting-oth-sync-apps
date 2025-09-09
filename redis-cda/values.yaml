@@ -1,4 +1,7 @@
 redis:
+  image:
+    repository: bitnamilegacy/redis
+
   architecture: standalone
   auth:
     enabled: false
